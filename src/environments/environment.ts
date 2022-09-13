@@ -3,6 +3,8 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
+  baseUrl:'http://localhost:4001/',
+  mapsKey: 'AIzaSyDGviRO9lLR7P2Zxrgx3FCiDK7dWTbESd0',
   production: false
 };
 

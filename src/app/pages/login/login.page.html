@@ -1,0 +1,28 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-col align-self-center>
+      <ion-img src="assets/img/s-works-logo (copy).png"></ion-img>
+      </ion-col>
+  </ion-toolbar>
+</ion-header>
+<ion-content fullscreen>
+  <form *ngIf="!isLoggedIn" name="form" (ngSubmit)="onSubmit()" #f="ngForm" novalidate >
+    <ion-item lines="full">
+      <ion-label position="floating" >Phone</ion-label>
+      <ion-input type="number" name="phone" [(ngModel)]="form.phone" required #phone="ngModel"></ion-input>
+    </ion-item>
+    <ion-item lines="full">
+      <ion-label position="floating" >Password </ion-label>
+      <ion-input type="password" name="password" [(ngModel)]="form.password" required #password="ngModel"></ion-input>
+    </ion-item>
+    <ion-row>
+      <ion-col>
+        <ion-button type="submit" color="danger" expand="block">Sign In</ion-button>
+        <a [routerLink]="['/forgot-password']" class="small-text">Forgot Password?</a>
+      </ion-col>
+    </ion-row>
+  </form>
+</ion-content>

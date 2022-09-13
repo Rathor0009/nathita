@@ -3,24 +3,88 @@
 
 <head>
   <meta charset="utf-8" />
-  <title>Ionic App</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title style="border:1d2822,chocolate">Nathita</title>
 
-  <base href="/" />
+  <!-- <base href="/" /> -->
 
-  <meta name="color-scheme" content="light dark" />
-  <meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <meta name="format-detection" content="telephone=no" />
-  <meta name="msapplication-tap-highlight" content="no" />
-
-  <link rel="icon" type="image/png" href="assets/icon/favicon.png" />
-
-  <!-- add to homescreen for ios -->
-  <meta name="apple-mobile-web-app-capable" content="yes" />
-  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+   <!-- Bootstrap CSS -->
+   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css">
+   <link rel="preconnect" href="https://fonts.googleapis.com">
+   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+   <link href="https://fonts.googleapis.com/css2?family=Happy+Monkey&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;1,100;1,300;1,400;1,500&display=swap" rel="stylesheet">
+   <!-- FONT AWESOME -->
+   <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+   <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+   <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+   <script src="https://maps.google.com/maps/api/js?key=AIzaSyDGviRO9lLR7P2Zxrgx3FCiDK7dWTbESd0"></script>
+   <title>HOME SERVICES</title>
 </head>
 
 <body>
   <app-root></app-root>
+    <!-- END MAP MODAL CONTENT -->
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="assets/js/custom.js"></script>
+       <script>
+        function generateNumItems(number) {
+          let itemString = '';
+          for (let i = 0; i < number; i++) {
+            itemString += `
+            <ion-item>
+              <ion-label>Item ${i}</ion-label>
+            </ion-item>
+          `;
+          }
+  
+          return itemString;
+        }
+  
+        function generateList(number = 5) {
+          return `
+          <ion-list>
+            ${generateNumItems(number)}
+          </ion-list>
+        `;
+        }
+  
+        function getContent() {
+          return document.querySelector('ion-content');
+        }
+  
+        function scrollToBottom() {
+          getContent().scrollToBottom(500);
+        }
+  
+        function scrollToTop() {
+          getContent().scrollToTop(500);
+        }
+  
+        class PageRoot extends HTMLElement {
+          connectedCallback() {
+            this.innerHTML = `
+            <ion-header translucent="true">
+              <ion-toolbar>
+                <ion-title>Content</ion-title>
+              </ion-toolbar>
+            </ion-header>
+            <ion-content fullscreen>
+              <p class="ion-padding-start ion-padding-end"><ion-button onclick="scrollToBottom()" expand="block" fill="outline">Scroll To Bottom</ion-button></p>
+              ${generateList(15)}
+              <p class="ion-padding-start ion-padding-end"><ion-button onclick="scrollToTop()" expand="block" fill="outline">Scroll To Top</ion-button></p>
+            </ion-content>
+          `;
+          }
+        }
+        customElements.define('page-root', PageRoot);
+      </script>
+
+   
 </body>
 
 </html>
