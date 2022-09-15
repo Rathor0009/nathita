@@ -110,11 +110,11 @@ a:hover {
 }
 .banner__content {
     position: relative;
-    top: 0;
+    top: 28px;
     left: 0;
     right: 0;
     z-index: 9;
-    background-color: #ffffffc9;
+    background-color: #ffffffad;
     padding: 65px 90px;
     border-radius: 3px;
     box-shadow: 3px 3px 3px #638aff63;

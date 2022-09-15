@@ -1,18 +1,5 @@
 <ion-header>
-  <ion-toolbar color="primary">
-    <ion-title>
-      Devdactic Maps
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
 
-<ion-content>
-  <div id="map" #map></div>
-  <ion-button (click)="draw()" expand="full">Draw</ion-button>
-</ion-content>
-
-<!-- map abo -->
-<ion-header class="header">
   <div class="header__bg">
     <div class="container">
       <div class="row">
@@ -28,6 +15,38 @@
                 <ion-img src="assets/img/s-works-logo (copy).png"></ion-img>
               </ion-col>
             </div>
+            <div class="registerBTN">
+              <ion-col>
+                <ion-button [routerLink]="['/register']" expand="block" color="danger">Register</ion-button>
+              </ion-col>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</ion-header>
+
+  
+
+
+  <!-- map abo -->
+  <!-- <ion-header class="header">
+  <div class="header__bg">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="header__row"> -->
+  <!-- <div class="logo">
+              <ion-col align-self-center>
+                <ion-button [routerLink]="['']" expand="block" color="primary">Get-Service</ion-button>
+              </ion-col>
+            </div> -->
+  <!-- <div class="logo">
+              <ion-col align-self-center>
+                <ion-img src="assets/img/s-works-logo (copy).png"></ion-img>
+              </ion-col>
+            </div>
             <div class="nav__menu">
               <ion-col align-self-center>
                 <ion-button [routerLink]="['/register']" expand="block" color="primary">Register</ion-button>
@@ -38,339 +57,66 @@
       </div>
     </div>
   </div>
-</ion-header>
-<!-- End top header-->
-
-
-<!-- BANNER -->
-<section class="banner__wraper">
-  <div class="banner__overlay"></div>
-  <div class="container">
-    <div class="row">
-      <div class="col-md-12 col-sm-12 col-12">
-        <div class="banner__content">
-          <div class="row">
-            <div class="col-md-4 col-sm-5 col-12">
-              <div class="dropdown banner__dropdown">
-                <ion-button type="button" class="btn btn-light dropdown-toggle" data-toggle="dropdown" color="danger">
-                  <ins>Select Location</ins>
-                </ion-button>
-                <div class="dropdown-menu__main">
-                  <span class="LocationCapture__upIcon--zRUXq"></span>
-                  <div class="dropdown-menu radio">
-                    <div class="LocationCapture__autoDetection--2yP1G">
-                      <span class="location__svg"><img src="assets/img/location-sign.svg"></span>
-                      <p class="LocationCapture__static--3MQ0R">Current Location</p>
-                      <div class="CurrentLocation__container--2T0G-">
-                        <p class="LocationCapture__dynamic--7zIA5">Detect Using GPS &nbsp; <i class="fa fa-angle-right"
-                            aria-hidden="true"></i></p>
-                      </div>
-                    </div>
-
-                    <div class="form-group has-search">
-                      <span class="fas fa-search form-control-feedback"></span>
-                      <input type="text" class="form-control" placeholder="Search for Society/Apartment..."
-                        data-toggle="modal" data-target="#modalPBottom">
-                    </div>
-
-                    <label class="dropdown-item">
-                      <input class="jRadioDropdown" type="radio" value="001" name="alphabet">
-                      <i>Alpha</i>
-                    </label>
-
-                    <label class="dropdown-item">
-                      <input class="jRadioDropdown" type="radio" value="002" name="alphabet">
-                      <i>Bravo</i>
-                    </label>
-
-                    <label class="dropdown-item">
-                      <input class="jRadioDropdown" type="radio" value="003" name="alphabet">
-                      <i>Charlie</i>
-                    </label>
-
-                    <label class="dropdown-item">
-                      <input class="jRadioDropdown" type="radio" value="004" name="alphabet">
-                      <i>Delta</i>
-                    </label>
-
-                    <label class="dropdown-item">
-                      <input class="jRadioDropdown" type="radio" value="005" name="alphabet">
-                      <i>Echo</i>
-                    </label>
-
-                    <label class="dropdown-item">
-                      <input class="jRadioDropdown" type="radio" value="006" name="alphabet">
-                      <i>Foxtrot</i>
-                    </label>
-
-                    <label class="dropdown-item">
-                      <input class="jRadioDropdown" type="radio" value="007" name="alphabet">
-                      <i>Golf</i>
-                    </label>
-
-                    <label class="dropdown-item">
-                      <input class="jRadioDropdown" type="radio" value="008" name="alphabet">
-                      <i>Hotel</i>
-                    </label>
-
-                    <label class="dropdown-item">
-                      <input class="jRadioDropdown" type="radio" value="009" name="alphabet">
-                      <i>India</i>
-                    </label>
-
-                    <label class="dropdown-item">
-                      <input class="jRadioDropdown" type="radio" value="010" name="alphabet">
-                      <i>Juliette</i>
-                    </label>
-
-                    <label class="dropdown-item">
-                      <input class="jRadioDropdown" type="radio" value="011" name="alphabet">
-                      <i>Kilo</i>
-                    </label>
-                    <form>
-                      <label class="dropdown-item">
-                        <input class="jRadioDropdown" type="radio" value="012" name="alphabet">
-                        <i>Lima</i>
-                      </label>
-                    </form>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-8 col-sm-7 col-12">
-
-              <div class="form-group has-search">
-                <form name="form" (ngSubmit)="onSubmit()" #f="ngForm" novalidate>
-                  <span class="fas fa-search form-control-feedback" color="danger"></span>
-                  <ion-select interface="action-sheet" placeholder="serch for service"
-                    style="color: rgba(239, 17, 191, 0.695);" required name="service" [(ngModel)]="form.service"
-                    #service="ngModel"  [multiple]="true">
-                    <ion-select-option *ngFor="let item of serviceData;let i=index" value="{{item._id}}"  >{{item.name}}</ion-select-option>
-                
-                  </ion-select>
-                  <ion-row><ion-col>
-                  <ion-button type="submit">Search</ion-button>
-                </ion-col></ion-row>
-                </form>
-              </div>
+</ion-header> -->
+  <!-- End top header-->
+  <section class="banner__wraper mb-4">
+    <div class="banner__overlay"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12 col-sm-12 col-12">
+          <div class="banner__content">
+            <div class="form-group has-search">
+              <form name="form" (ngSubmit)="onSubmit()" #f="ngForm"  novalidate>
+                <span class="fas fa-search form-control-feedback" style="color: #282828;"></span>
+                <ion-select interface="action-sheet" style="color: #282828;" placeholder="serch for service"
+                   required name="service" [(ngModel)]="form.service"
+                  #service="ngModel">
+                  <ion-select-option *ngFor="let item of serviceData;let i=index" value="{{item._id}}">
+                    {{item.name}}</ion-select-option>
+                </ion-select>
+                <ion-row>
+                  <ion-col>
+                    <ion-button type="submit">Search</ion-button>
+                  </ion-col>
+                </ion-row>
+              </form>
             </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- <section class="services__slider mb-4"> -->
-<ion-content fullscreen class="ion-padding" scroll-y="false">
-  <ion-slides class="services__slider mb-4">
-    <ion-slide>
-      <!-- SERVICES FLEX -->
-      <section class="services__wrapper_slider">
-        <div class="container">
-          <div class="row">
-            <div class="col-md-12">
-              <div class="services__flex_title">
-                <h1>Cleaning</h1>
-              </div>
-            </div>
-            <div class="col-md-6 col-6">
-              <div class="servics__cleaning">
-                <a href="#!">
-                  <div class="servics__cleaningIMG">
-                    <img src="assets/img/household-chores-concept.jpg">
-                  </div>
-                  <h2>Bathroom and Kitchen Cleaning</h2>
-                </a>
-              </div>
-            </div>
-            <div class="col-md-6 col-6">
-              <div class="servics__cleaning">
-                <a href="#!">
-                  <div class="servics__cleaningIMG">
-                    <img src="assets/img/man-cleaning-his-home.jpg">
-                  </div>
-                  <h2>Sofa & Carpet Cleaning</h2>
-                </a>
-              </div>
-            </div>
-            <div class="col-md-6 col-6">
-              <div class="servics__cleaning">
-                <a href="#!">
-                  <div class="servics__cleaningIMG">
-                    <img src="assets/img/cheerful-asian-male.jpg">
-                  </div>
-                  <h2>Full Home Cleaning</h2>
-                </a>
-              </div>
-            </div>
-            <div class="col-md-6 col-6">
-              <div class="servics__cleaning">
-                <a href="#!">
-                  <div class="servics__cleaningIMG">
-                    <img src="assets/img/household-chores-concept.jpg">
-                  </div>
-                  <h2>Bathroom and Kitchen Cleaning</h2>
-                </a>
-              </div>
-            </div>
-            <div class="col-md-12 col-12">
-              <div class="services__cleaningBTN">
-                <a class="btn__color">View All Services</a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-      <!-- SERVICES FLEX -->
-    </ion-slide>
+  <ion-content>
+    <div class="container">
+      <div class="row">
 
-    <ion-slide>
-      <!-- SERVICES FLEX -->
-      <section class="services__wrapper_slider">
-        <div class="container">
-          <div class="row">
-            <div class="col-md-12">
-              <div class="services__flex_title">
-                <h1>Electrician, Plumber & Carpenter</h1>
-              </div>
-            </div>
-            <div class="col-md-6 col-6">
-              <div class="servics__cleaning">
-                <a href="#!">
-                  <div class="servics__cleaningIMG">
-                    <img src="assets/img/partial-view-repairman.jpg">
-                  </div>
-                  <h2>Plumber</h2>
-                </a>
-              </div>
-            </div>
-            <div class="col-md-6 col-6">
-              <div class="servics__cleaning">
-                <a href="#!">
-                  <div class="servics__cleaningIMG">
-                    <img src="assets/img/male-electrician-works.jpg">
-                  </div>
-                  <h2>Electrician</h2>
-                </a>
-              </div>
-            </div>
-            <div class="col-md-6 col-6">
-              <div class="servics__cleaning">
-                <a href="#!">
-                  <div class="servics__cleaningIMG">
-                    <img src="assets/img/partial-view-repairman.jpg">
-                  </div>
-                  <h2>Plumber</h2>
-                </a>
-              </div>
-            </div>
-            <div class="col-md-6 col-6">
-              <div class="servics__cleaning">
-                <a href="#!">
-                  <div class="servics__cleaningIMG">
-                    <img src="assets/img/male-electrician-works.jpg">
-                  </div>
-                  <h2>Electrician</h2>
-                </a>
-              </div>
-            </div>
-            <div class="col-md-12 col-12">
-              <div class="services__cleaningBTN">
-                <a class="btn__color">View All Services</a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-      <!-- SERVICES FLEX -->
-    </ion-slide>
-
-    <ion-slide>
-      <!-- SERVICES FLEX -->
-      <section class="services__wrapper_slider">
-        <div class="container">
-          <div class="row">
-            <div class="col-md-12">
-              <div class="services__flex_title">
-                <h1>Cleaning</h1>
-              </div>
-            </div>
-            <div class="col-md-6 col-6">
-              <div class="servics__cleaning">
-                <a href="#!">
-                  <div class="servics__cleaningIMG">
-                    <img src="assets/img/household-chores-concept.jpg">
-                  </div>
-                  <h2>Bathroom and Kitchen Cleaning</h2>
-                </a>
-              </div>
-            </div>
-            <div class="col-md-6 col-6">
-              <div class="servics__cleaning">
-                <a href="#!">
-                  <div class="servics__cleaningIMG">
-                    <img src="assets/img/man-cleaning-his-home.jpg">
-                  </div>
-                  <h2>Sofa & Carpet Cleaning</h2>
-                </a>
-              </div>
-            </div>
-            <div class="col-md-6 col-6">
-              <div class="servics__cleaning">
-                <a href="#!">
-                  <div class="servics__cleaningIMG">
-                    <img src="assets/img/cheerful-asian-male.jpg">
-                  </div>
-                  <h2>Full Home Cleaning</h2>
-                </a>
-              </div>
-            </div>
-            <div class="col-md-6 col-6">
-              <div class="servics__cleaning">
-                <a href="#!">
-                  <div class="servics__cleaningIMG">
-                    <img src="assets/img/household-chores-concept.jpg">
-                  </div>
-                  <h2>Bathroom and Kitchen Cleaning</h2>
-                </a>
-              </div>
-            </div>
-            <div class="col-md-12 col-12">
-              <div class="services__cleaningBTN">
-                <a class="btn__color">View All Services</a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-      <!-- SERVICES FLEX -->
-    </ion-slide>
-  </ion-slides>
-</ion-content>
-<!-- </section> -->
-<!-- FOOTER -->
-<br />
-<br />
-<section class="form__footer mt-0 mb-0">
-  <div class="container">
-    <div class="row">
-      <div class="col-md-6 col-6 border__right">
-        <div class="left__btn">
-          <a href="index.html" class=""><i class="fas fa-home"></i> Home</a>
-        </div>
-      </div>
-      <div class="col-md-6 col-6">
-        <div class="left__btn">
-          <a href="help.html" class=""><i class="fas fa-info-circle"></i> Help</a>
+        <div class="col-md-12">
+<capacitor-google-map #map></capacitor-google-map>
         </div>
       </div>
     </div>
-  </div>
-</section>
+  </ion-content>
+  <br />
+  <section class="form__footer mt-0 mb-0">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6 col-6 border__right">
+          <div class="left__btn">
+            <a href="index.html" class=""><i class="fas fa-home"></i> Home</a>
+          </div>
+        </div>
+        <div class="col-md-6 col-6">
+          <div class="left__btn">
+            <a href="help.html" class=""><i class="fas fa-info-circle"></i> Help</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-<!-- MAP MODAL CONTENT STARTS HERE -->
-<!-- <div class="modal fade modal-p-bottom" id="modalPBottom">
+  <!-- MAP MODAL CONTENT STARTS HERE -->
+  <!-- <div class="modal fade modal-p-bottom" id="modalPBottom">
 <div class="modal-dialog">
 <div class="modal-content">
   <div class="modal-body">

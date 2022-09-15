@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
 import { AuthService } from 'src/app/services/auth/auth.service';
+import { ConsumerService } from 'src/app/services/consumer/consumer.service';
 
 @Component({
   selector: 'app-service-user',
@@ -12,7 +13,7 @@ export class ServiceUserPage implements OnInit {
   user: any;
   param: any;
   
-  constructor(private auth:AuthService,private alertController: AlertController,private route: ActivatedRoute,private router: Router) { }
+  constructor(private consumer:ConsumerService,private auth:AuthService,private alertController: AlertController,private route: ActivatedRoute,private router: Router) { }
 
   ngOnInit() {
     this.route.queryParams.subscribe(params => {
@@ -29,7 +30,9 @@ export class ServiceUserPage implements OnInit {
       }
     })
   }
-  async presentAlert() {
+  async presentAlert(id:any) {
+    console.log(id)
+    let user=id
     const alert = await this.alertController.create({
       header: 'Please enter basic info',
       buttons: [
@@ -41,11 +44,16 @@ export class ServiceUserPage implements OnInit {
               console.log('Confirm Cancel');
           }
       }, 
-      {
+      { 
           text: 'call',
           handler: (alertData) => { //takes the data 
               console.log(alertData.name,alertData.phone);
-              
+              let name=alertData.name;let phone=alertData.phone
+              this.consumer.consumer(name,phone,user).subscribe({
+                next:data=>{
+                  console.log(data)
+                }
+              })
           }
       }
       ],
@@ -55,7 +63,8 @@ export class ServiceUserPage implements OnInit {
           placeholder: 'Name',
           min:3,
           max:20,
-          value:''
+          value:'',
+          
         },
        
         {

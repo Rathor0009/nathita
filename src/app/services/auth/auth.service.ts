@@ -47,7 +47,7 @@ export class AuthService {
 
  getservice(service:string):Observable<any>{
   
-  return this.http.post(AUTH_API+'profileS',{
+  return this.http.post(AUTH_API+'service-provider-user',{
     service
   },httpOptions)
 

@@ -32,6 +32,11 @@ const routes: Routes = [
     path: 'service-user',
     loadChildren: () => import('./pages/service-user/service-user.module').then( m => m.ServiceUserPageModule)
   },
+  
+  {
+    path: 'modal',
+    loadChildren: () => import('./modal/modal.module').then( m => m.ModalPageModule)
+  },
 ];
 
 @NgModule({

@@ -19,16 +19,17 @@
         <h2>{{item.phone}}</h2>
         <h3>{{item.firstname}}</h3>
         <h3>{{item.lastname}}</h3>
-
         <h2>{{item.service}}</h2>
         <h2>{{item.location}}</h2>
         <p>{{item.email}}</p>
-      </ion-label>
+    </ion-label>
+
       <ion-avatar slot="end">
-        <ion-button (click)="presentAlert()"><ion-img src="assets/img/phone-call.png" ></ion-img></ion-button>
+        <ion-button (click)="presentAlert(item._id)"  ><ion-img src="assets/img/phone-call.png" ></ion-img></ion-button>
         <!-- <a [routerLink]="['/home']"><ion-img src="assets/img/phone-call.png" ></ion-img></a> -->
         
       </ion-avatar>
+
     </ion-item>
 
  
