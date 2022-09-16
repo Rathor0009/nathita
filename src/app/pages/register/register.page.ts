@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { LoadingController, AlertController } from '@ionic/angular';
+import { Photo } from '@capacitor/camera';
 import { AuthService } from 'src/app/services/auth/auth.service';
+import { PhotoService } from 'src/app/services/photo/photo.service';
 import { ServiceService } from 'src/app/services/service/service.service';
 
 @Component({
@@ -12,35 +12,47 @@ import { ServiceService } from 'src/app/services/service/service.service';
 })
 export class RegisterPage implements OnInit {
   form: any = {
-    phone:null,
+    phone: null,
     firstname: null,
     lastname: null,
     email: null,
-    rephone:null,
+    rephone: null,
     password: null,
-    location:null,
-    service:null
+    location: null,
+    service: null
 
   };
   isSuccessful = false;
   isSignUpFailed = false;
   errorMessage = '';
   serviceData: any;
-  constructor(private authService: AuthService,private router:Router,private service:ServiceService) { }
+  photos: any;
+  data:any
+  constructor(private authService: AuthService, private router: Router, private service: ServiceService, public photoService: PhotoService) { }
 
-  ngOnInit() {
-this.service.services().subscribe({
-  next:data=>{
-    this.serviceData=data.data
-    console.log(this.serviceData)
+ async ngOnInit() {
+    await this.photoService.loadSaved();
+    this.service.services().subscribe({
+      next: data => {
+        this.serviceData = data.data
+        console.log(this.serviceData)
+      }
+    })
   }
-})
+// for take picture@@@@@@@@@@@@@@@@@@@@@
+async addPhotoToGallery() {
+  this.photoService.addNewToGallery();
   
+}
+  savePicture(capturedPhoto: Photo) {
+    
   }
+
+
   onSubmit(): void {
-   
-    const { phone,firstname,lastname, email,rephone, password ,location,service} = this.form;
-    this.authService.register(phone,firstname, lastname, email, rephone,password,location,service).subscribe({
+
+    const { phone, firstname, lastname, email, rephone, password, location, service } = this.form;
+    this.authService.register(phone, firstname, lastname, email, rephone, password, location, service).subscribe({
       next: data => {
         console.log(data);
         this.isSuccessful = true;
@@ -53,6 +65,6 @@ this.service.services().subscribe({
       }
     });
   }
-  
- 
+
+
 }

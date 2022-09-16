@@ -70,15 +70,15 @@ export class HomePage implements OnInit {
 
     this.map.setOnMarkerClickListener(async (marker) => {
       console.log(marker)
-      const modal =await this.alertCtrl.create({
-        component:ModalPage,
-        componentProps:{
-          marker,
-        },
-        breakpoints:[0,0.3],
-        initialBreakpoint:0.3
-      })
-      modal.present()
+      // const modal =await this.alertCtrl.create({
+      //   component:ModalPage,
+      //   componentProps:{
+      //     marker,
+      //   },
+      //   breakpoints:[0,0.3],
+      //   initialBreakpoint:0.3
+      // })
+      // modal.present()
     })
   }
   ngOnInit(): void {
