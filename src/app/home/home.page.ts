@@ -4,7 +4,7 @@ import { CapacitorGoogleMaps } from '@capacitor-community/capacitor-googlemaps-n
 import { LatLng } from '@capacitor-community/capacitor-googlemaps-native/dist/esm/types/common/latlng.interface';
 import { Geolocation } from '@capacitor/geolocation';
 import { GoogleMap, Marker } from '@capacitor/google-maps';
-import { AlertController } from '@ionic/angular';
+import { AlertController, MenuController } from '@ionic/angular';
 import { ModalPage } from '../modal/modal.page';
 import { AuthService } from '../services/auth/auth.service';
 import { ServiceService } from '../services/service/service.service';
@@ -24,7 +24,21 @@ export class HomePage implements OnInit {
   errorMessage: any;
   serviceData: any;
 
-  constructor(private alertCtrl: AlertController, private auth: AuthService, private router: Router, private service: ServiceService) { }
+  constructor(private menu: MenuController,private alertCtrl: AlertController, private auth: AuthService, private router: Router, private service: ServiceService) { }
+  
+  openFirst() {
+    this.menu.enable(true, 'first');
+    this.menu.open('first');
+  }
+
+  openEnd() {
+    this.menu.open('end');
+  }
+
+  openCustom() {
+    this.menu.enable(true, 'custom');
+    this.menu.open('custom');
+  }
   ionViewDidEnter() {
     this.createMap();
   }
@@ -39,7 +53,7 @@ export class HomePage implements OnInit {
           lat: 33.6,
           lng: -117.9
         },
-        zoom: 9
+        zoom: 50
       },
     })
     this.addMarkers()
@@ -113,7 +127,8 @@ export class HomePage implements OnInit {
           queryParams: { serviceValue: this.form.service }
         }
 
-        this.router.navigate(['/service-user'], params)
+        this.router.navigate(['service-user'], params)
+
       },
       error: err => {
         this.errorMessage = err.error.message;

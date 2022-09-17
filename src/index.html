@@ -83,8 +83,11 @@
         }
         customElements.define('page-root', PageRoot);
       </script>
-
-   
+<script>
+async function openMenu() {
+  await menuController.open();
+}
+</script> 
 </body>
 
 </html>

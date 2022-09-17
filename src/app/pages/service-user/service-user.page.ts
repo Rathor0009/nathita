@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { ConsumerService } from 'src/app/services/consumer/consumer.service';
+import { ServiceService } from 'src/app/services/service/service.service';
 
 @Component({
   selector: 'app-service-user',
@@ -11,24 +12,60 @@ import { ConsumerService } from 'src/app/services/consumer/consumer.service';
 })
 export class ServiceUserPage implements OnInit {
   user: any;
-  param: any;
+  user1: any;
+  serviceData: any;
+  form:any={
+    service:''
+  }
+  errorMessage: any;
+  selectedService: any;
+
   
-  constructor(private consumer:ConsumerService,private auth:AuthService,private alertController: AlertController,private route: ActivatedRoute,private router: Router) { }
+  constructor(private service: ServiceService,private consumer:ConsumerService,private auth:AuthService,private alertController: AlertController,private route: ActivatedRoute,private router: Router) { }
 
   ngOnInit() {
     this.route.queryParams.subscribe(params => {
       if (params) {
         console.log(params)
-        this.param=params.serviceValue
-        console.log(this.param)
+        this.selectedService=params.serviceValue;
+        
+       
+        console.log("yyyyyyyyyyyyy",this.form.service)
       }
     });
-    this.auth.getservice(this.param).subscribe({
+    this.auth.getservice(this.selectedService).subscribe({
       next: data=>{
-        this.user=data
-        console.log(this.user)
+        this.user=data.getUser
+        // this.user1=data.getserviceName
+        // console.log(this.user)
+        // console.log(this.user1.name)
       }
     })
+    this.service.services().subscribe({
+      next: (data) => {
+        this.serviceData = data.data
+        // console.log(this.serviceData)
+        this.form.service = this.selectedService;
+      }
+    })
+  }
+  onSubmit(){
+
+    const { service } = this.form;
+console.log(this.form)
+    this.auth.getservice(service).subscribe({
+      next: data => {
+this.user=data.getUser
+        console.log(data.getUser)
+        // console.log(data.service)
+        
+
+      },
+      error: err => {
+        this.errorMessage = err.error.message;
+
+      }
+    });
   }
   async presentAlert(id:any) {
     console.log(id)
