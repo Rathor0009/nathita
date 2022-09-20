@@ -37,10 +37,7 @@ const routes: Routes = [
     path: 'modal',
     loadChildren: () => import('./modal/modal.module').then( m => m.ModalPageModule)
   },
-  {
-    path: 'home1',
-    loadChildren: () => import('./home1/home1.module').then( m => m.Home1PageModule)
-  },
+  
 ];
 
 @NgModule({

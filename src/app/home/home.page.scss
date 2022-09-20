@@ -9,7 +9,7 @@ capacitor-google-map{
   height: 300px;
 }
 .header__bg {
-  background-color: white;
+  background-color: rgb(193, 228, 20);
 }
 .header__row {
   display: flex;
@@ -17,7 +17,8 @@ capacitor-google-map{
   justify-content: space-between;
 }
 .header__row .logo ion-img {
-  width: 160px;
+  width: 120px;
+  background-color: rgb(30, 214, 104);
 }
 .has-search form ion-select {
   /* border: 1px solid #282828; */

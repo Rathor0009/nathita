@@ -1,37 +1,203 @@
-
+<ion-menu side="start" content-id="main-content">
   <ion-header>
     <ion-toolbar translucent>
-      <ion-title>Menu</ion-title>
+      <ion-title>Register/Login</ion-title>
     </ion-toolbar>
   </ion-header>
   <ion-content>
     <ion-list>
       <ion-item>
         <ion-icon name="mail" slot="start"></ion-icon>
-        <ion-label>Inbox</ion-label>
+        <ion-label [routerLink]="['/register']"><a>Resister</a></ion-label>
       </ion-item>
       <ion-item>
         <ion-icon name="paper-plane" slot="start"></ion-icon>
-        <ion-label>Outbox</ion-label>
-      </ion-item>
-      <ion-item>
-        <ion-icon name="heart" slot="start"></ion-icon>
-        <ion-label>Favorites</ion-label>
-      </ion-item>
-      <ion-item>
-        <ion-icon name="archive" slot="start"></ion-icon>
-        <ion-label>Archived</ion-label>
-      </ion-item>
-      <ion-item>
-        <ion-icon name="trash" slot="start"></ion-icon>
-        <ion-label>Trash</ion-label>
-      </ion-item>
-      <ion-item>
-        <ion-icon name="warning" slot="start"></ion-icon>
-        <ion-label>Spam</ion-label>
+        <ion-label [routerLink]="['/login']">Login</ion-label>
       </ion-item>
     </ion-list>
   </ion-content>
+</ion-menu>
+
+<div class="ion-page" id="main-content">
+  <ion-header>
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-menu-button></ion-menu-button>
+      </ion-buttons>
+      <ion-title>
+        <div class="logo">
+          <ion-col align-self-center class="logo">
+            <ion-img src="assets/img/s-works-logo (copy).png"></ion-img>
+          </ion-col>
+        </div>
+      </ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content class="ion-padding">
+    <section class="banner__wraper mb-4">
+      <div class="banner__overlay"></div>
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12 col-sm-12 col-12">
+            <div class="banner__content">
+              <div class="form-group has-search">
+                <form name="form" (ngSubmit)="onSubmit()" #f="ngForm" novalidate>
+                  <span class="fas fa-search form-control-feedback" style="color: #282828;"></span>
+                  <ion-select interface="action-sheet" style="color: #282828;" placeholder="serch for service" required
+                    name="service" [(ngModel)]="form.service" #service="ngModel">
+                    <ion-select-option *ngFor="let item of serviceData;let i=index" value="{{item._id}}">
+                      {{item.name}}</ion-select-option>
+                  </ion-select>
+                  <ion-row>
+                    <ion-col>
+                      <ion-button type="submit">Search</ion-button>
+                    </ion-col>
+                  </ion-row>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <ion-content fullscreen >
+      
+          <ion-card>
+            <!-- <img src="assets/img/household-chores-concept.jpg" />
+            <ion-card-header>
+              <ion-card-title>House-Keeping</ion-card-title>
+            </ion-card-header> -->
+           
+            <ion-card-content>
+
+
+              <!-- SERVICES FLEX -->
+              <section class="services__wrapper_slider">
+                <div class="container">
+                  <div class="row">
+                   
+                    <div class="col-md-6 col-6" *ngFor="let item of serviceData;let i=index" >
+                      <div class="servics__cleaning">
+                        <a >
+                          
+                            <div >
+                              <img src="assets/img/{{item.img}}"   (click)="onClick(item._id)">
+                            </div>
+                            <h2>{{item.name}}</h2>
+                         
+                        </a>
+                      </div>
+                    </div>
+                    <!-- <div class="col-md-6 col-6">
+                      <div class="servics__cleaning">
+                        <a >
+                          <form>
+                          <div >
+                            <img src="assets/img/household-chores-concept.jpg"  value="631dbd4c8f89dd5475021427" (click)="onClick('631dbd4c8f89dd5475021427')">
+
+                          </div>
+                          <h2>Foremen</h2>
+                        </form>
+                        </a>
+                      </div>
+                    </div> -->
+                    <!-- <div class="col-md-6 col-6">
+                      <div class="servics__cleaning">
+                        <a >
+                          <form>
+                            <div >
+                              <img src="assets/img/household-chores-concept.jpg"  value="631dbdde8f89dd5475021429" (click)="onClick('631dbdde8f89dd5475021429')">
+
+                            </div>
+                            <h2>Pulmber</h2>
+                          </form>
+                        </a>
+                      </div>
+                    </div> -->
+                    <!-- <div class="col-md-6 col-6">
+                      <div class="servics__cleaning">
+                        <a >
+                          <form>
+                            <div >
+                              <img src="assets/img/household-chores-concept.jpg"  value="631dbdde8f89dd547502142a" (click)="onClick('631dbdde8f89dd547502142a')">
+
+                            </div>
+                            <h2>Carpenter</h2>
+                          </form>
+                        </a>
+                      </div>
+                    </div> -->
+
+                    <!-- <div class="col-md-12 col-12">
+                      <div class="services__cleaningBTN">
+                        <a class="btn__color">View All Services</a>
+                      </div>
+                    </div> -->
+                  </div>
+                </div>
+              </section>
+            
+
+            </ion-card-content>
+
+          </ion-card>
+     
+
+    </ion-content>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      <section class="form__footer mt-0 mb-0">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-6 col-6 border__right">
+              <div class="left__btn">
+                <a href="index.html" class=""><i class="fas fa-home"></i> Home</a>
+              </div>
+            </div>
+            <div class="col-md-6 col-6">
+              <div class="left__btn">
+                <a href="" class=""><i class="fas fa-info-circle"></i> Help</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+
+
 
 
 <!-- <ion-header>
@@ -61,22 +227,18 @@
   </div>
 </ion-header> -->
 
-  
 
 
-  <!-- map abo -->
-  <!-- <ion-header class="header">
+      <!-- 
+  <-- map abo -->
+      <!-- <ion-header class="header">
   <div class="header__bg">
     <div class="container">
       <div class="row">
         <div class="col-md-12">
-          <div class="header__row"> -->
-  <!-- <div class="logo">
-              <ion-col align-self-center>
-                <ion-button [routerLink]="['']" expand="block" color="primary">Get-Service</ion-button>
-              </ion-col>
-            </div> -->
-  <!-- <div class="logo">
+          <div class="header__row"> 
+ 
+   <div class="logo">
               <ion-col align-self-center>
                 <ion-img src="assets/img/s-works-logo (copy).png"></ion-img>
               </ion-col>
@@ -91,9 +253,9 @@
       </div>
     </div>
   </div>
-</ion-header> -->
-  <!-- End top header-->
-  <!-- <section class="banner__wraper mb-4">
+</ion-header>  -->
+      <!-- End top header-->
+      <!-- <section class="banner__wraper mb-4">
     <div class="banner__overlay"></div>
     <div class="container">
       <div class="row">
@@ -119,9 +281,9 @@
         </div>
       </div>
     </div>
-  </section>
+  </section> -->
 
-  <ion-content>
+      <!-- <ion-content>
     <div class="container">
       <div class="row">
 
@@ -130,8 +292,11 @@
         </div>
       </div>
     </div>
+  </ion-content> -->
+      <!-- <ion-content>
+    <div id="map" #map></div>
   </ion-content>
-  <br /> -->
+  
   <section class="form__footer mt-0 mb-0">
     <div class="container">
       <div class="row">
@@ -147,13 +312,13 @@
         </div>
       </div>
     </div>
-  </section>
+  </section> -->
 
-  <!-- MAP MODAL CONTENT STARTS HERE -->
-  <!-- <div class="modal fade modal-p-bottom" id="modalPBottom">
-<div class="modal-dialog">
-<div class="modal-content">
-  <div class="modal-body">
+      <!-- MAP MODAL CONTENT STARTS HERE -->
+      <!-- <div class="modal fade modal-p-bottom" id="modalPBottom">
+  <div class="modal-dialog">
+   <div class="modal-content">
+    <div class="modal-body">
     <div class="responsive-map">
       <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2822.7806761080233!2d-93.29138368446431!3d44.96844997909819!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x52b32b6ee2c87c91%3A0xc20dff2748d2bd92!2sWalker+Art+Center!5e0!3m2!1sen!2sus!4v1514524647889" width="100%" height="350" frameborder="0" style="border:0" allowfullscreen></iframe>
     </div>
@@ -164,8 +329,3 @@
 </div>
 </div>
 </div> -->
-   <!-- <div class="logo">
-              <ion-col align-self-center>
-                <ion-button [routerLink]="['']" expand="block" color="primary">Get-Service</ion-button>
-              </ion-col>
-            </div> -->
