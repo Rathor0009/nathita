@@ -18,9 +18,11 @@ const httpOptions = {
 export class ServiceService {
 
   constructor(private http:HttpClient) { }
-  services():Observable<any>{
+  services(search?:any):Observable<any>{
   
-    return this.http.get(AUTH_API+'services',httpOptions)
+    return this.http.post(AUTH_API+'services',{
+      search,
+    },httpOptions);
   
    }
 }

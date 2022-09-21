@@ -13,8 +13,10 @@ import { ServiceService } from '../services/service/service.service';
 export class HomePage implements OnInit {
 
   form: any = {
-    service: ''
+    service: '',
+    
   }
+  search:string;
   errorMessage: any;
   serviceData: any;
 
@@ -22,7 +24,7 @@ export class HomePage implements OnInit {
 
 
   ngOnInit(): void {
-    this.service.services().subscribe({
+    this.service.services(this.search).subscribe({
       next: data => {
         this.serviceData = data.data
         console.log(this.serviceData)
@@ -72,5 +74,15 @@ export class HomePage implements OnInit {
 
       }
     });
+  }
+  searchService(){
+   
+    this.service.services(this.search).subscribe({
+      next: data => {
+        this.serviceData = data.data
+        console.log(this.serviceData)
+
+      }
+    })
   }
 }
