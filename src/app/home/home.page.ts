@@ -1,16 +1,17 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { NavigationExtras, Router } from '@angular/router';
 
-import { AlertController, } from '@ionic/angular';
+import { AlertController, IonSearchbar, } from '@ionic/angular';
 import { AuthService } from '../services/auth/auth.service';
 import { ServiceService } from '../services/service/service.service';
-
+ declare  var google
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
 })
 export class HomePage implements OnInit {
+  @ViewChild('autocomplete') autocomplete:IonSearchbar;
 
   form: any = {
     service: '',
@@ -32,7 +33,15 @@ export class HomePage implements OnInit {
       }
     })
   }
-
+ ionViewDidEnter(){
+  this.autocomplete.getInputElement().then((ref=>{
+    const autocomplete= new google.maps.places.Autocomplete(ref);
+    autocomplete.addListener('place_changed',()=>{
+      console.log(autocomplete.getPlace());
+      
+    })
+  }))
+ }
   onSubmit(): void {
     const { service } = this.form;
     this.auth.getservice(service).subscribe({
@@ -84,5 +93,8 @@ export class HomePage implements OnInit {
 
       }
     })
+  }
+  searchClick(){
+    this['router'].navigate(['map'])
   }
 }

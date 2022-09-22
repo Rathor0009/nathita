@@ -1,16 +1,19 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { Photo } from '@capacitor/camera';
+import { IonSearchbar } from '@ionic/angular';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { PhotoService } from 'src/app/services/photo/photo.service';
 import { ServiceService } from 'src/app/services/service/service.service';
-
+declare  var google
 @Component({
   selector: 'app-register',
   templateUrl: './register.page.html',
   styleUrls: ['./register.page.scss'],
 })
 export class RegisterPage implements OnInit {
+  @ViewChild('autocomplete') autocomplete:IonSearchbar;
+
   form: any = {
     phone: null,
     firstname: null,
@@ -48,7 +51,15 @@ async addPhotoToGallery() {
     
   }
 
-
+  ionViewDidEnter(){
+    this.autocomplete.getInputElement().then((ref=>{
+      const autocomplete= new google.maps.places.Autocomplete(ref);
+      autocomplete.addListener('place_changed',()=>{
+        console.log(autocomplete.getPlace());
+        
+      })
+    }))
+   }
   onSubmit(): void {
 
     const { phone, firstname, lastname, email, rephone, password, location, service } = this.form;
