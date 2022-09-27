@@ -1,82 +1,105 @@
 <ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-back-button defaultHref="/register"></ion-back-button>
-      <ion-col align-self-center>
-        <ion-img src="assets/img/s-works-logo (copy).png"></ion-img>
+      <ion-back-button defaultHref="/home"></ion-back-button>
+      <ion-row>
+        <ion-col align-self-center>
+          <ion-img src="assets/img/s-works-logo (copy).png"></ion-img>
         </ion-col>
+      </ion-row>
     </ion-buttons>
-   
+
     <ion-title></ion-title>
   </ion-toolbar>
 </ion-header>
 <ion-content fullscreen>
-  <form class=" .register-form" *ngIf="!isSuccessful" name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
+  <form class=" .register-form" *ngIf="!isSuccessful" name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm"
+    novalidate>
     <div class="alert alert-warning signup__alert" *ngIf="f.submitted && isSignUpFailed">
       <h2>Signup failed!{{ errorMessage }}</h2>
     </div>
     <ion-item lines="full">
-      <ion-label position="floating" >Mobile No</ion-label>
-      <ion-input type="number" name="phone" [(ngModel)]="form.phone" required minlength="10"
-      maxlength="10" #phone="ngModel"  ></ion-input>
+      <ion-label position="floating">Mobile No</ion-label>
+      <ion-input type="number" name="phone" [(ngModel)]="form.phone" required minlength="10" maxlength="10"
+        #phone="ngModel"></ion-input>
     </ion-item>
     <ion-item lines="full">
       <ion-label position="floating">First name</ion-label>
-      <ion-input type="text"  name="firstname" [(ngModel)]="form.firstname" required minlength="3"
-      maxlength="20" #firstname="ngModel" ></ion-input>
+      <ion-input type="text" name="firstname" [(ngModel)]="form.firstname" required minlength="3" maxlength="20"
+        #firstname="ngModel"></ion-input>
     </ion-item>
     <ion-item lines="full">
       <ion-label position="floating">Last name</ion-label>
-      <ion-input type="text"   name="firstname" [(ngModel)]="form.lastname" required minlength="3"
-      maxlength="20" #lastname="ngModel" ></ion-input>
+      <ion-input type="text" name="firstname" [(ngModel)]="form.lastname" required minlength="3" maxlength="20"
+        #lastname="ngModel"></ion-input>
     </ion-item>
     <ion-item lines="full">
       <ion-label position="floating">Email</ion-label>
-      <ion-input type="email" name="email" [(ngModel)]="form.email" email #email="ngModel" ></ion-input>
+      <ion-input type="email" name="email" [(ngModel)]="form.email" email #email="ngModel"></ion-input>
     </ion-item>
     <ion-item lines="full">
       <ion-label position="floating">Password</ion-label>
-      <ion-input type="password"  name="password" [(ngModel)]="form.password" required minlength="8"
-      #password="ngModel" ></ion-input>
+      <ion-input type="password" name="password" [(ngModel)]="form.password" required minlength="8" #password="ngModel">
+      </ion-input>
     </ion-item>
     <ion-item lines="full">
-      <ion-label position="floating" >Re-phone</ion-label>
-      <ion-input type="number" name="rephone" [(ngModel)]="form.rephone" #rephone="ngModel" ></ion-input>
+      <ion-label position="floating">Re-phone</ion-label>
+      <ion-input type="number" name="rephone" [(ngModel)]="form.rephone" #rephone="ngModel"></ion-input>
     </ion-item>
+    <ion-radio-group>  
+      <ion-list-header>  
+       Category 
+      </ion-list-header>  
+    
+      <ion-item>  
+        <ion-label>Shop</ion-label>  
+        <ion-radio value="shops" (click)="onClick('shops')"></ion-radio>  
+      </ion-item>  
+    
+      <ion-item>  
+        <ion-label>Service</ion-label>  
+        <ion-radio value="services"  (click)="onClick('services')"></ion-radio>  
+      </ion-item>  
+    </ion-radio-group>  
+
+    <ion-item lines="full">
+      <ion-select interface="action-sheet" required name="service" [(ngModel)]="form.service" #service="ngModel"
+        [multiple]="true" placeholder="Choose service">
+        <ion-select-option *ngFor="let service of serviceData;let i=index" value="{{service._id}}">{{service.name}}
+        </ion-select-option>
+      </ion-select>
+    </ion-item>
+
     <ion-item lines="full">
       <ion-label position="floating">Location</ion-label>
-      <ion-input type="text" required name="location" [(ngModel)]="form.location" #location="ngModel"  #autocomplete></ion-input>
+      <ion-input type="text" required name="geo_address" [(ngModel)]="form.geo_address" #geo_address="ngModel" #autocomplete>
+      </ion-input>
     </ion-item>
+
+
+
     <ion-item lines="full">
-
-    <ion-select interface="action-sheet"  required name="service" [(ngModel)]="form.service" #service="ngModel" [multiple]="true" placeholder="Choose service">
-      <ion-select-option *ngFor="let service of serviceData;let i=index" value="{{service._id}}" >{{service.name}}</ion-select-option>
-      
-    </ion-select>
-  </ion-item>
-  
-
-  <ion-item lines="full">
-    <ion-label floating>Take-Picture</ion-label>
-    <ion-input type="button">
-      <ion-grid>
-        <ion-row>
-          <ion-col size="6" *ngFor="let photo of photoService.photos; index as position">
-            <ion-img [src]="photo.webviewPath"></ion-img>
-          </ion-col>
-        </ion-row>
-      </ion-grid>
-        <ion-fab-button >
-          <ion-icon name="camera"  (click)="addPhotoToGallery()"></ion-icon>
+      <ion-label floating>Take-Picture</ion-label>
+      <ion-input type="button">
+        <ion-grid>
+          <ion-row>
+            <ion-col size="6" *ngFor="let photo of photoService.photos; index as position">
+              <ion-img [src]="photo.webviewPath"></ion-img>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+        <ion-fab-button>
+          <ion-icon name="camera" (click)="addPhotoToGallery()"></ion-icon>
         </ion-fab-button>
-    </ion-input>
-  </ion-item>
-      <ion-button type="submit" color="danger" expand="block">Sign Up</ion-button>
-      <ion-row>
-        <ion-col>
-      <a [routerLink]="['/login']" class="small-text">Sign In?</a>
-    </ion-col>
-  </ion-row>
-    
+      </ion-input>
+    </ion-item>
+    <ion-button type="submit" color="danger" expand="block">Sign Up</ion-button>
+    <ion-row>
+      <ion-col>
+        <a [routerLink]="['/login']" class="small-text">Sign In?</a>
+      </ion-col>
+    </ion-row>
+
   </form>
+ 
 </ion-content>

@@ -9,7 +9,7 @@ const routes: Routes = [
   
   {
     path: '',
-    redirectTo: 'map',
+    redirectTo: 'home',
     pathMatch: 'full'
   },
   {
@@ -38,8 +38,16 @@ const routes: Routes = [
     loadChildren: () => import('./modal/modal.module').then( m => m.ModalPageModule)
   },
   {
-    path: 'map',
-    loadChildren: () => import('./pages/map/map.module').then( m => m.MapPageModule)
+    path: 'shop-register',
+    loadChildren: () => import('./pages/shop-register/shop-register.module').then( m => m.ShopRegisterPageModule)
+  },
+  {
+    path: 'shop-login',
+    loadChildren: () => import('./pages/shop-login/shop-login.module').then( m => m.ShopLoginPageModule)
+  },
+  {
+    path: 'shop-user-profile',
+    loadChildren: () => import('./pages/shop-user-profile/shop-user-profile.module').then( m => m.ShopUserProfilePageModule)
   },
   
 ];

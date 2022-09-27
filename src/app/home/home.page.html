@@ -8,11 +8,15 @@
     <ion-list>
       <ion-item>
         <ion-icon name="mail" slot="start"></ion-icon>
-        <ion-label [routerLink]="['/register']"><a>Resister</a></ion-label>
+        <ion-label [routerLink]="['/register']"><a>Signup</a></ion-label>
       </ion-item>
       <ion-item>
         <ion-icon name="paper-plane" slot="start"></ion-icon>
-        <ion-label [routerLink]="['/login']">Login</ion-label>
+        <ion-label [routerLink]="['/login']">Service-Login</ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-icon name="paper-plane" slot="start"></ion-icon>
+        <ion-label [routerLink]="['/shop-login']">Shop-Login</ion-label>
       </ion-item>
     </ion-list>
   </ion-content>
@@ -25,23 +29,34 @@
         <ion-menu-button></ion-menu-button>
       </ion-buttons>
       <ion-title>
+
         <ion-row>
-          <ion-col></ion-col>
 
           <ion-col align-self-center>
-            <ion-img src="assets/img/s-works-logo (copy).png"></ion-img>
+            <ion-img src="assets/img/s-works-logo (copy).png" class="log"></ion-img>
           </ion-col>
         </ion-row>
       </ion-title>
     </ion-toolbar>
   </ion-header>
   <ion-content >
-    <ion-searchbar placeholder="Search location" #autocomplete></ion-searchbar>
+
+    
+    <ion-searchbar placeholder="Search location" name="" [(ngModel)]="form.geo_address" #location="ngModel" #autocomplete> </ion-searchbar>
+
+
+
+<capacitor-google-map #map></capacitor-google-map>
+
+    
     
 
-    <section class="banner__wraper mb-4">
+    <!-- <section class="banner__wraper mb-4">
       <div class="banner__overlay"></div>
-       <!-- <div class="container">
+
+      <ion-content>
+      </ion-content>
+      <div class="container">
         <div class="row">
           <div class="col-md-12 col-sm-12 col-12">
              <div class="banner__content">
@@ -64,8 +79,8 @@
             </div> 
           </div>
         </div>
-      </div>  -->
-    </section> 
+      </div>  
+    </section>  -->
 
 
 
@@ -116,12 +131,12 @@
       <div class="row">
         <div class="col-md-6 col-6 border__right">
           <div class="left__btn">
-            <a href="index.html" class=""><i class="fas fa-home"></i> Home</a>
+            <a href="javascript:void(0);"  [ngClass]="{'selected': selected === 1}" (click)="changeSelected(1)"><i class="fas fa-home" ></i>Services</a>
           </div>
         </div>
         <div class="col-md-6 col-6">
           <div class="left__btn">
-            <a href="" class=""><i class="fas fa-info-circle"></i> Help</a>
+            <a href="javascript:void(0);" [ngClass]="{'selected': selected === 2}" (click)="changeSelected(2)"><i class="fas fa-info-circle"></i> Shops</a>
           </div>
         </div>
       </div>

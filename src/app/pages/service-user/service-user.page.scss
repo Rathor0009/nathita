@@ -28,3 +28,11 @@
     color: #282828;
     opacity: 0.8;
   }
+  .scroll-items {
+    flex-wrap: nowrap;
+    overflow-x: scroll !important;
+    overflow-y: hidden;
+  }
+  .scroll-items ion-col {
+    display: flex;
+  }

@@ -18,8 +18,8 @@ const httpOptions = {
 export class AuthService {
 
   constructor(private http:HttpClient,public tokenStorage:TokenStorageService) { }
-
-  register(phone: number, firstname: string, lastname: string, email: string,rephone:string,password: string, location: string,service:string): Observable<any> {
+//register as service user
+  register(phone: number, firstname: string, lastname: string, email: string,rephone:string,password: string, location:number,service:string,geo_address:string): Observable<any> {
     return this.http.post(AUTH_API + 'signup', {
       phone,
       firstname,
@@ -29,15 +29,42 @@ export class AuthService {
       password,
       location,
       service,
+      geo_address,
       
     }, httpOptions);
   }
+//register as shop user
+shopUserRegister(phone: number, firstname: string, lastname: string, email: string,rephone:string,password: string, location:number,shop:string,geo_address:string): Observable<any> {
+  return this.http.post(AUTH_API + 'shop-user-signup', {
+    phone,
+    firstname,
+    lastname,
+    email,
+    rephone,
+    password,
+    location,
+    shop,
+    geo_address
+    
+  }, httpOptions);
+}
+
+// sign in as serviceUser
   signin(phone:number,password:string):Observable<any>{
     return this.http.post(AUTH_API+'login',{
       phone,password
     },httpOptions)
 
   }
+
+  // signin as shop user
+  shopUserSignin(phone:number,password:string):Observable<any>{
+    return this.http.post(AUTH_API+'shop-user-login',{
+      phone,password
+    },httpOptions)
+
+  }
+
   token=this.tokenStorage.getToken()
  getuser():Observable<any>{
   return this.http.get(AUTH_API+'profile',httpOptions)
@@ -45,16 +72,24 @@ export class AuthService {
 
 
 
- getservice(service:string):Observable<any>{
+ getservice(service:string,lat:string,lng:string):Observable<any>{
   
   return this.http.post(AUTH_API+'service-provider-user',{
-    service
+    service,
+    lat,
+   lng
   },httpOptions)
+  
 
  }
 
+ getshop(shop:string,lat:string,lng:string):Observable<any>{
+  
+  return this.http.post(AUTH_API+'shop-provider-user',{
+    shop,lat,lng
+  },httpOptions)
 
- 
+}
 
  getServiceData():Observable<any>{
   
