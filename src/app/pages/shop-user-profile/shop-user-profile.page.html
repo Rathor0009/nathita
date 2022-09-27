@@ -1,46 +1,46 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home" (click)="signOut()"></ion-back-button>
+    </ion-buttons>
+    <ion-col align-self-center>
       <ion-img src="assets/img/s-works-logo (copy).png"></ion-img>
-    </ion-title>
+      </ion-col>
   </ion-toolbar>
 </ion-header>
+<!-- List of Text Items -->
 
-<!-- List of Text Items -->
-<!-- List of Text Items -->
 <ion-content fullscreen>
-  <ion-list-header>Profile Photo</ion-list-header>
+
+
+  <img src="assets/img/partial-view-repairman.jpg" class="center">
+<h3 class="ion-text-center">{{user.firstname}}{{user.lastname}} <ion-badge color="primary">swork</ion-badge></h3>
+  <h5 class="ion-text-center">{{user.phone}}</h5>
+  <ion-item>
+    <ion-label slot="start">User Name</ion-label>
+    <p slot="end" >{{user.firstname}}-{{user.lastname}}</p>
+
+  </ion-item>
 
   <ion-item>
-    <ion-img src="assets/img/partial-view-repairman.jpg"></ion-img>
-
+    <ion-label slot="start">Phone Number</ion-label>
+    <p slot="end">{{user.phone}}</p>
+  </ion-item>
+  <!-- <ion-item>
+    <ion-label slot="start">Your Service</ion-label>
+    <p slot="end">{{ServiceName}}</p>
+  </ion-item> -->
+  <ion-item>
+    <ion-label slot="start">Location</ion-label>
+    <p slot="end">{{user.geo_address}}</p>
   </ion-item>
   <ion-item>
-    <ion-list-header>User Name</ion-list-header>
-    <h2>{{user.firstname}}</h2>
-
-    <h2>{{user.lastname}}</h2>
-  </ion-item>
-
-  <ion-item>
-    <ion-list-header>Phone Number</ion-list-header>
-    <h2>{{user.phone}}</h2>
+    <ion-label slot="start">Ref-Number</ion-label>
+    <p slot="end">{{user.rephone}}</p>
   </ion-item>
   <ion-item>
-    <ion-list-header>Your Service</ion-list-header>
-    <h2>{{ServiceName}}</h2>
-  </ion-item>
-  <ion-item>
-    <ion-list-header>Your Location</ion-list-header>
-    <h2>{{user.geo_address}}</h2>
-  </ion-item>
-  <ion-item>
-    <ion-list-header>Reference Number</ion-list-header>
-    <h3>{{user.rephone}}</h3>
-  </ion-item>
-  <ion-item>
-    <ion-list-header>Your Email</ion-list-header>
-    <h3>{{user.email}}</h3>
+    <ion-label slot="start">Email</ion-label>
+    <p slot="end">{{user.email}}</p>
   </ion-item>
 
 
@@ -57,11 +57,11 @@
           <a (click)="signOut()"><i class="fas fa-home"></i>LogOut</a>
         </div>
       </div>
-      <!-- <div class="col-md-6 col-6">
+       <div class="col-md-6 col-6">
         <div class="left__btn">
           <a href="help.html" class=""><i class="fas fa-info-circle"></i> Help</a>
         </div>
-      </div> -->
+      </div>
     </div>
   </div>
 </section>

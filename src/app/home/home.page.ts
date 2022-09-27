@@ -143,8 +143,9 @@ export class HomePage implements OnInit {
       // this.current=[event.latitude, event.longitude]
       this.latlng = [event.latitude, event.longitude];
       this.form.location = this.latlng
-      console.log(this.latlng);
-
+      console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!",this.latlng);
+ console.log(this.form.location);
+ 
 
 
 
@@ -250,7 +251,7 @@ export class HomePage implements OnInit {
     }
   }
   searchService() {
-
+if(this.selected==1){
     this.service.services(this.search).subscribe({
       next: data => {
         this.serviceData = data.data
@@ -259,6 +260,17 @@ export class HomePage implements OnInit {
       }
     })
   }
+  if(this.selected==2){
+    this.shop.shops(this.search).subscribe({
+      next: data => {
+        this.serviceData = data.data
+        console.log(this.serviceData)
+
+      }
+    })
+  }
+
+}
   searchClick() {
     this['router'].navigate(['map'])
   }

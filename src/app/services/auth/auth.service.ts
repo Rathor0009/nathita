@@ -64,6 +64,10 @@ shopUserRegister(phone: number, firstname: string, lastname: string, email: stri
     },httpOptions)
 
   }
+// shop user profile
+getShopuser():Observable<any>{
+  return this.http.get(AUTH_API+'shop-user-profile',httpOptions)
+ }
 
   token=this.tokenStorage.getToken()
  getuser():Observable<any>{

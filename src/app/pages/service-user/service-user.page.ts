@@ -5,7 +5,7 @@ import { AuthService } from 'src/app/services/auth/auth.service';
 import { ConsumerService } from 'src/app/services/consumer/consumer.service';
 import { ServiceService } from 'src/app/services/service/service.service';
 import { ShopService } from 'src/app/services/shop/shop.service';
-declare  var google
+declare var google
 
 @Component({
   selector: 'app-service-user',
@@ -13,108 +13,114 @@ declare  var google
   styleUrls: ['./service-user.page.scss'],
 })
 export class ServiceUserPage implements OnInit {
- 
-  @ViewChild('autocomplete' ) 
-  autocomplete:IonSearchbar 
+
+  @ViewChild('autocomplete')
+  autocomplete: IonSearchbar
   @Input()
   user: any;
   user1: any;
   serviceData: any;
-  form:any={
-    service:''
+  form: any = {
+    service: '',
+    location: ''
   }
   errorMessage: any;
   selectedService: any;
   clickId: any;
   selected: any;
-  latlng:any
+  latlng: any
   lat: any;
   lng: any;
-
   
-  constructor(private shop:ShopService,private service: ServiceService,private consumer:ConsumerService,private auth:AuthService,private alertController: AlertController,private route: ActivatedRoute,private router: Router) { }
+
+  constructor(private shop: ShopService, private service: ServiceService, private consumer: ConsumerService, private auth: AuthService, private alertController: AlertController, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
-    console.log( "###################",this.latlng);
+    console.log("###################", this.latlng);
     this.route.queryParams.subscribe(params => {
       if (params) {
         console.log(params)
-        this.selectedService=params.serviceValue;
-        this.selected=params.selected,
-        this.latlng= [params.lat,params.lng];
-       this.lat=params.lat,
-       this.lng=params.lng
-       
+        this.selectedService = params.serviceValue;
+        this.selected = params.selected,
+          this.latlng = [params.lat, params.lng];
+        this.lat = params.lat,
+          this.lng = params.lng
+
       }
     });
 
-//for shop and service user
-console.log(this.selected);
+    //for shop and service user
+    console.log(this.selected);
 
-    if(this.selected==1){
-    this.auth.getservice(this.selectedService,this.lat,this.lng).subscribe({
-      next: data=>{
-        this.user=data.getUser
-        console.log(this.user);
-        
-      }
-    })
-    this.service.services().subscribe({
-      next: (data) => {
-        this.serviceData = data.data
-        console.log(this.serviceData);
+    if (this.selected == 1) {
+      this.auth.getservice(this.selectedService, this.lat, this.lng).subscribe({
+        next: data => {
+          this.user = data.getUser
+          console.log(this.user);
+          this.form.location=this.latlng
+ console.log(this.form.location);
+ 
+        }
+      })
+      this.service.services().subscribe({
+        next: (data) => {
+          this.serviceData = data.data
+          console.log(this.serviceData);
 
-        // console.log(this.serviceData)
-        this.form.service = this.selectedService;
-      }
-    })
+          // console.log(this.serviceData)
+          this.form.service = this.selectedService;
+        }
+      })
+    }
+
+    if (this.selected == 2) {
+      console.log("seleted ---", this.selected);
+      this.auth.getshop(this.selectedService, this.lat, this.lng).subscribe({
+        next: data => {
+          this.user = data
+          console.log("this user-----", this.user);
+          this.form.location=this.user.geo_address
+
+        }
+
+      })
+      this.shop.shops().subscribe({
+        next: (data) => {
+          this.serviceData = data.data
+          console.log(this.serviceData);
+
+          // console.log(this.serviceData)
+          this.form.service = this.selectedService;
+        }
+      })
+    }
+
   }
 
-  if(this.selected==2){
-    console.log("seleted ---",this.selected);
-    this.auth.getshop(this.selectedService,this.lat,this.lng).subscribe({
-      next: data=>{
-        this.user=data
-        console.log("this user-----",this.user);
-        
-      }
-      
-    })
-    this.shop.shops().subscribe({
-      next: (data) => {
-        this.serviceData = data.data
-        console.log(this.serviceData);
-
-        // console.log(this.serviceData)
-        this.form.service = this.selectedService;
-      }
-    })
-  }
-
-  }
-
-  ionViewDidEnter(){
+  ionViewDidEnter() {
 
 
-    this.autocomplete.getInputElement().then((ref=>{
-      const autocomplete= new google.maps.places.Autocomplete(ref);
-      autocomplete.addListener('place_changed',()=>{
-        console.log(autocomplete.getPlace());
-        
+    this.autocomplete.getInputElement().then((ref => {
+      const autocomplete = new google.maps.places.Autocomplete(ref);
+      autocomplete.addListener('place_changed', () => {
+        let response = autocomplete.getPlace();
+        this.form.location = response.formatted_address;
+        this.lat = response.geometry['location'].lat(),
+        this.lng=response.geometry['location'].lng()
       })
     }))
-   }
-  onSubmit(){
- 
-    const { service  } = this.form;
-console.log(this.form)
+  }
+  onSubmit() {
 
-    this.auth.getservice(service,this.lat,this.lng).subscribe({
+    const { service } = this.form;
+    console.log(this.form)
+
+    this.auth.getservice(service, this.lat, this.lng).subscribe({
       next: data => {
-this.user=data.getUser
+        this.user = data.getUser
         console.log(data.getUser)
         // console.log(data.service)
-        
+
 
       },
       error: err => {
@@ -123,9 +129,9 @@ this.user=data.getUser
       }
     });
   }
-  async presentAlert(id:any) {
+  async presentAlert(id: any) {
     console.log(id)
-    let user=id
+    let user = id
     const alert = await this.alertController.create({
       header: 'Please enter basic info',
       buttons: [
@@ -134,68 +140,86 @@ this.user=data.getUser
           role: 'cancel',
           cssClass: 'secondary',
           handler: () => {
-              console.log('Confirm Cancel');
+            console.log('Confirm Cancel');
           }
-      }, 
-      { 
+        },
+        {
           text: 'call',
           handler: (alertData) => { //takes the data 
-              console.log(alertData.name,alertData.phone);
-              let name=alertData.name;let phone=alertData.phone
-              this.consumer.consumer(name,phone,user).subscribe({
-                next:data=>{
-                  console.log(data)
-                }
-              })
+            console.log(alertData.name, alertData.phone);
+            let name = alertData.name; let phone = alertData.phone
+            this.consumer.consumer(name, phone, user).subscribe({
+              next: data => {
+                console.log(data)
+              }
+            })
           }
-      }
+        }
       ],
       inputs: [
         {
-          name:'name',
+          name: 'name',
           placeholder: 'Name',
-          min:3,
-          max:20,
-          value:'',
-          
+          min: 3,
+          max: 20,
+          value: '',
+
         },
-       
+
         {
-          name:'phone',
+          name: 'phone',
           type: 'number',
           placeholder: 'Mobile No.',
           min: 10,
           max: 10,
-          value:''
+          value: ''
         },
-        
+
       ],
     });
 
     await alert.present();
   }
 
-  onClick(id:any){
+  onClick(id: any) {
     console.log(id);
-    this.clickId=id
+    this.clickId = id
     console.log(this.clickId);
+    if (this.selected == 1) {
+      this.auth.getservice(id, this.lat, this.lng).subscribe({
+        next: data => {
+          this.user = data
+          // console.log(data.getUser)
+          // console.log(data.service)
 
-    this.auth.getservice(id,this.lat,this.lng).subscribe({
-      next: data => {
-this.user=data.getUser
-        console.log(data.getUser)
-        // console.log(data.service)
-        
 
-      },
-      error: err => {
-        this.errorMessage = err.error.message;
+        },
+        error: err => {
+          this.errorMessage = err.error.message;
 
-      }
-    });
-    
+        }
+      });
+    }
+    if (this.selected == 2) {
+      this.auth.getshop(id, this.lat, this.lng).subscribe({
+        next: data => {
+          this.user = data
+          // console.log(data.getUser)
+          // console.log(data.service)
+          console.log(this.user);
+          
+
+
+        },
+        error: err => {
+          this.errorMessage = err.error.message;
+
+        }
+      });
+    }
+
     // this.onSubmit()
-    
+
   }
 
 }

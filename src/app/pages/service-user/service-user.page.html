@@ -39,13 +39,13 @@
   </div>
 </section> -->
 <ion-content role="feed">
-  <ion-searchbar placeholder="Search location"  #autocomplete> </ion-searchbar>
+  <ion-searchbar placeholder="Search location"  name="" [(ngModel)]="form.geo_address" #location="ngModel" #autocomplete> </ion-searchbar>
 
-  <ion-grid>
+  <ion-grid >
   <ion-row scrollX="true" class="scroll-items">
-    <ion-col *ngFor="let item of serviceData;let i=index" >
+    <ion-col *ngFor="let item of serviceData;let i=index" class="circle">
       <!-- Items -->
-      <ion-button (click)="onClick(item._id)" >{{item.name}}</ion-button>
+      <ion-button  (click)="onClick(item._id)"  >{{item.name}}</ion-button>
       
       
     </ion-col>

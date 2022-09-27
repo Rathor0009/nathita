@@ -29,7 +29,11 @@ export class ShopLoginPage implements OnInit {
     
     this.authService.shopUserSignin(phone, password).subscribe({
       next: data => {
+        console.log(data);
+        
         this.tokenStorage.saveToken(data.token);
+
+console.log(this.tokenStorage);
 
         this.isLoginFailed = false;
         this.isLoggedIn = true;

@@ -13,7 +13,7 @@ user:any
   constructor(private auth:AuthService,private router:Router) { }
 
   ngOnInit() {
-    this.auth.getuser().subscribe({
+    this.auth.getShopuser().subscribe({
       next:data=>{
         console.log(data.getUser)
         console.log(data.ServiceName)

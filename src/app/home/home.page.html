@@ -7,21 +7,21 @@
   <ion-content>
     <ion-list>
       <ion-item>
-        <ion-icon name="mail" slot="start"></ion-icon>
+        <ion-icon name="person-add-sharp" slot="start"></ion-icon>
         <ion-label [routerLink]="['/register']"><a>Signup</a></ion-label>
       </ion-item>
       <ion-item>
-        <ion-icon name="paper-plane" slot="start"></ion-icon>
+        <ion-icon name="key" slot="start"></ion-icon>
         <ion-label [routerLink]="['/login']">Service-Login</ion-label>
       </ion-item>
       <ion-item>
-        <ion-icon name="paper-plane" slot="start"></ion-icon>
+        <ion-icon name="key" slot="start"></ion-icon>
         <ion-label [routerLink]="['/shop-login']">Shop-Login</ion-label>
       </ion-item>
     </ion-list>
   </ion-content>
 </ion-menu>
-
+<ion-content>
 <div class="ion-page" id="main-content">
   <ion-header>
     <ion-toolbar>
@@ -42,7 +42,7 @@
   <ion-content >
 
     
-    <ion-searchbar placeholder="Search location" name="" [(ngModel)]="form.geo_address" #location="ngModel" #autocomplete> </ion-searchbar>
+    <ion-searchbar placeholder="Search location" name="location" [(ngModel)]="form.geo_address" #location="ngModel" #autocomplete> </ion-searchbar>
 
 
 
@@ -122,25 +122,31 @@
     </ion-content>
   </ion-content>
 </div>
+</ion-content>
 
 
 
-<ion-footer>
-  <section class="form__footer mt-0 mb-0">
+ <ion-footer color="bar-royal">
+
+  <ion-toolbar >
+    <ion-title slot="start"><a href="javascript:void(0);"  [ngClass]="{'selected': selected === 1}" (click)="changeSelected(1)"><ion-icon name="git-network-sharp"></ion-icon> Services</a></ion-title>
+    <ion-title slot="end"> <a href="javascript:void(0);" [ngClass]="{'selected': selected === 2}" (click)="changeSelected(2)"><ion-icon name="card-sharp"></ion-icon> Shops</a></ion-title>
+  </ion-toolbar> 
+</ion-footer>
+
+  <!-- <section class="form__footer mt-0 mb-0">
     <div class="container">
       <div class="row">
         <div class="col-md-6 col-6 border__right">
           <div class="left__btn">
-            <a href="javascript:void(0);"  [ngClass]="{'selected': selected === 1}" (click)="changeSelected(1)"><i class="fas fa-home" ></i>Services</a>
+            <a href="javascript:void(0);"  [ngClass]="{'selected': selected === 1}" (click)="changeSelected(1)"><ion-icon name="git-network-sharp"></ion-icon> Services</a>
           </div>
         </div>
         <div class="col-md-6 col-6">
           <div class="left__btn">
-            <a href="javascript:void(0);" [ngClass]="{'selected': selected === 2}" (click)="changeSelected(2)"><i class="fas fa-info-circle"></i> Shops</a>
+            <a href="javascript:void(0);" [ngClass]="{'selected': selected === 2}" (click)="changeSelected(2)"><ion-icon name="card-sharp"></ion-icon> Shops</a>
           </div>
         </div>
       </div>
     </div>
-  </section>
-
-</ion-footer>
+  </section> -->
