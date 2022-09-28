@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { CapacitorGoogleMaps } from '@capacitor-community/capacitor-googlemaps-native';
 import { environment } from '../environments/environment';
+import { SplashScreen } from '@capacitor/splash-screen';
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
@@ -8,8 +9,8 @@ import { environment } from '../environments/environment';
 })
 export class AppComponent {
   constructor() {
-    CapacitorGoogleMaps.initialize({
-      key: environment.mapsKey
-    });
+    // CapacitorGoogleMaps.initialize({
+    //   key: environment.mapsKey
+    // });
   }
 }

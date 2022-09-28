@@ -2,7 +2,7 @@ import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { NavigationExtras, Router } from '@angular/router';
 import { GoogleMap } from '@capacitor/google-maps';
 
-import { AlertController, IonSearchbar, } from '@ionic/angular';
+import { AlertController, IonSearchbar, ToastController, } from '@ionic/angular';
 import { environment } from 'src/environments/environment';
 import { AuthService } from '../services/auth/auth.service';
 import { ServiceService } from '../services/service/service.service';
@@ -45,8 +45,9 @@ export class HomePage implements OnInit {
   selected = 1;
   current: any;
   lat: any;
+  empty: any;
 
-  constructor(private alertCtrl: AlertController, private auth: AuthService, private router: Router, private service: ServiceService, private shop: ShopService) { }
+  constructor(private toastController: ToastController,private alertController: AlertController, private auth: AuthService, private router: Router, private service: ServiceService, private shop: ShopService) { }
 
 
   async ngOnInit() {
@@ -212,8 +213,25 @@ export class HomePage implements OnInit {
   reloadPage(): void {
     window.location.reload();
   }
-  onClick(id: any): void {
+
+  async presentAlert() {
+    const alert = await this.alertController.create({
+      header: 'Alert',
+      subHeader: 'Select Your Location!s',
+      message: 'Select Your Location!',
+      // cssClass:'color=danger',
+      buttons: ['OK'],
+    });
+
+    await alert.present();
+  }
+ async onClick(id: any) {
     console.log(id);
+    if(this.latlng===this.empty){
+      console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+      
+    return await this.presentAlert()
+    }
 
     if (this.selected === 1) {
       this.auth.getservice(id,this.latlng[0],this.latlng[1]).subscribe({

@@ -109,7 +109,8 @@
         <ion-item (click)="onClick(item._id)">
 
           <ion-avatar slot="start">
-            <img alt="Silhouette of a person's head" src="assets/img/{{item.img}}" />
+            <!-- <img alt="Silhouette of a person's head" src="assets/img/{{item.img}}" /> -->
+            <img alt="Silhouette of a person's head" src="assets/img/plumber.png" />
           </ion-avatar>
           <ion-label>
             <h2>{{item.name}}</h2>
@@ -126,15 +127,14 @@
 
 
 
- <ion-footer color="bar-royal">
+ <ion-footer >
 
-  <ion-toolbar >
-    <ion-title slot="start"><a href="javascript:void(0);"  [ngClass]="{'selected': selected === 1}" (click)="changeSelected(1)"><ion-icon name="git-network-sharp"></ion-icon> Services</a></ion-title>
-    <ion-title slot="end"> <a href="javascript:void(0);" [ngClass]="{'selected': selected === 2}" (click)="changeSelected(2)"><ion-icon name="card-sharp"></ion-icon> Shops</a></ion-title>
-  </ion-toolbar> 
-</ion-footer>
+  <!-- <ion-toolbar >
+    <ion-title slot="start"><a href="javascript:void(0);"  [ngClass]="{'selected': selected == 1}" (click)="changeSelected(1)"><ion-icon name="git-network-sharp"></ion-icon> Services</a></ion-title>
+    <ion-title slot="end"> <a href="javascript:void(0);" [ngClass]="{'selected': selected == 2}" (click)="changeSelected(2)"><ion-icon name="card-sharp"></ion-icon> Shops</a></ion-title>
+  </ion-toolbar>  -->
 
-  <!-- <section class="form__footer mt-0 mb-0">
+   <section class="form__footer mt-0 mb-0">
     <div class="container">
       <div class="row">
         <div class="col-md-6 col-6 border__right">
@@ -149,4 +149,5 @@
         </div>
       </div>
     </div>
-  </section> -->
+  </section> 
+</ion-footer>
