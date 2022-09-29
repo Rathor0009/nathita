@@ -49,6 +49,10 @@ const routes: Routes = [
     path: 'shop-user-profile',
     loadChildren: () => import('./pages/shop-user-profile/shop-user-profile.module').then( m => m.ShopUserProfilePageModule)
   },
+  {
+    path: 'payment',
+    loadChildren: () => import('./pages/payment/payment.module').then( m => m.PaymentPageModule)
+  },
   
 ];
 

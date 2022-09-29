@@ -55,7 +55,7 @@ export class ServiceUserPage implements OnInit {
     if (this.selected == 1) {
       this.auth.getservice(this.selectedService, this.lat, this.lng).subscribe({
         next: data => {
-          this.user = data.getUser
+          this.user = data
           console.log(this.user);
           this.form.location=this.latlng
  console.log(this.form.location);

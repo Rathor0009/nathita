@@ -38,7 +38,7 @@ export class LoginPage implements OnInit {
     const alert = await this.alertController.create({
       header: 'Alert',
       subHeader: this.errorMessage,
-      message: this.errorMessage,
+      // message: this.errorMessage,
       buttons: ['OK'],
     });
 
@@ -57,13 +57,16 @@ export class LoginPage implements OnInit {
 
         this.isLoggedIn = true;
 
-        this['router'].navigate(['/user-profile'])
+        this['router'].navigate(['user-profile'])
         // this.reloadPage();
       },error: err => {
-        this.presentAlert()
         this.errorMessage = err.error.message;
+        console.log(this.errorMessage);
+        
 
         this.isLoggedIn = false;
+        this.presentAlert()
+
       }
    
     });}

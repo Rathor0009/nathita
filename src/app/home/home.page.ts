@@ -26,10 +26,7 @@ export class HomePage implements OnInit {
   @Input() 
 
   newMap: GoogleMap;
-  canter: any = {
-    lat: 30.6998327,
-    lng: 76.7295102,
-  }
+ 
   markerId: string;
 
   form: any = {
@@ -46,7 +43,10 @@ export class HomePage implements OnInit {
   current: any;
   lat: any;
   empty: any;
-
+  canter: any = {
+    lat: 30.6998327,
+    lng: 76.7295102,
+  }
   constructor(private toastController: ToastController,private alertController: AlertController, private auth: AuthService, private router: Router, private service: ServiceService, private shop: ShopService) { }
 
 
@@ -93,7 +93,7 @@ export class HomePage implements OnInit {
         apiKey: environment.mapsKey,
         config: {
           center: this.canter,
-          zoom: 8,
+          zoom: 10,
         },
       });
       await this.newMap.enableClustering();

@@ -60,7 +60,9 @@
       </div>
        <div class="col-md-6 col-6">
         <div class="left__btn">
-          <a href="help.html" class=""><i class="fas fa-info-circle"></i> Help</a>
+          <a href="/payment"  *ngif user.status="1"><i class="fas fa-info-circle"></i> Make-Payment</a>
+          <a href="/payment"  *ngif user.status="2"><i class="fas fa-info-circle"></i> view-plan</a>
+
         </div>
       </div>
     </div>
