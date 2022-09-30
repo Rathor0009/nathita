@@ -13,27 +13,27 @@
 <ion-menu side="start" content-id="main-content">
   <ion-header>
     <ion-toolbar translucent>
-      <ion-title>Register/Login</ion-title>
+      <ion-title>My Account</ion-title>
     </ion-toolbar>
   </ion-header>
   <ion-content>
     <ion-list>
       <ion-item>
         <ion-icon name="person-add-sharp" slot="start"></ion-icon>
-        <ion-label ><a>My Account</a></ion-label>
+        <ion-label><a>My Account</a></ion-label>
       </ion-item>
       <ion-item>
         <ion-icon name="key" slot="start"></ion-icon>
-        <ion-label >Product</ion-label>
+        <ion-label>Product</ion-label>
       </ion-item>
       <ion-item>
         <ion-icon name="key" slot="start"></ion-icon>
-        <ion-label >LogOut</ion-label>
+        <ion-label>LogOut</ion-label>
       </ion-item>
     </ion-list>
   </ion-content>
 </ion-menu>
-<ion-content fullscreen>
+<ion-content>
   <div class="ion-page" id="main-content">
     <ion-header>
       <ion-toolbar>
@@ -52,11 +52,28 @@
       </ion-toolbar>
     </ion-header>
 
-
+ <ion-content>
 
     <img src="assets/img/partial-view-repairman.jpg" class="center">
     <h3 class="ion-text-center">{{user.firstname}}{{user.lastname}} <ion-badge color="primary">swork</ion-badge>
     </h3>
+    <ion-grid *ngIf="showPlan">
+      <ion-row>
+        <ion-col>
+          <ion-card id="card1" class="ion-text-center">
+            <ion-icon name="flame"></ion-icon>
+            <ion-card-header>
+              <ion-card-title>Plan Activated Valid Till </ion-card-title>
+              <ion-card-title>{{endDate}}/{{endMonth}}/{{endYear}} </ion-card-title>
+
+            </ion-card-header>
+
+
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
     <h5 class="ion-text-center">{{user.phone}}</h5>
     <ion-item>
       <ion-label slot="start">User Name</ion-label>
@@ -68,10 +85,7 @@
       <ion-label slot="start">Phone Number</ion-label>
       <p slot="end">{{user.phone}}</p>
     </ion-item>
-    <!-- <ion-item>
-    <ion-label slot="start">Your Service</ion-label>
-    <p slot="end">{{ServiceName}}</p>
-  </ion-item> -->
+
     <ion-item>
       <ion-label slot="start">Location</ion-label>
       <p slot="end">{{user.geo_address}}</p>
@@ -85,13 +99,13 @@
       <p slot="end">{{user.email}}</p>
     </ion-item>
 
-
-</div>
+  </ion-content>
+  </div>
 
 </ion-content>
 
 
-<section class="form__footer mt-0 mb-0">
+<!-- <section class="form__footer mt-0 mb-0">
   <div class="container">
     <div class="row">
       <div class="col-md-6 col-6 border__right">
@@ -107,4 +121,4 @@
       </div>
     </div>
   </div>
-</section>
+</section> -->
