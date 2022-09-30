@@ -67,20 +67,21 @@ export class PaymentPage implements OnInit {
     const toast = await this.toastCtrl.create({
       message: "payment Successful",
       buttons: [
+        // {
+        //   text: 'Cancel',
+        //   role: 'cancel',
+        //   cssClass: 'secondary',
+        //   handler: () => {
+        //     console.log('Confirm Cancel');
+        //   }
+        // },
         {
-          text: 'Cancel',
-          role: 'cancel',
-          cssClass: 'secondary',
-          handler: () => {
-            console.log('Confirm Cancel');
-          }
-        },
-        {
-          text: 'call',
+          text: 'save',
           handler: () => { //takes the data 
             this.paymentHistory.userPayment(this.status, this.usertype, this.paymentStatus).subscribe({
               next: data => {
                 console.log(data)
+                this['router'].navigate(['/shop-user-profile'])
               }
             })
               }

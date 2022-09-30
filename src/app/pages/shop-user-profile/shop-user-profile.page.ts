@@ -10,19 +10,24 @@ import { AuthService } from 'src/app/services/auth/auth.service';
 export class ShopUserProfilePage implements OnInit {
 user:any
   ServiceName: any;
+  showPayment: boolean=true
+  showPlan: boolean=false
   constructor(private auth:AuthService,private router:Router) { }
 
   ngOnInit() {
     this.auth.getShopuser().subscribe({
       next:data=>{
         console.log(data.getUser)
-        console.log(data.ServiceName)
         this.user=data.getUser
+        if (this.user.status == 2) {
+          this.showPayment = false
+          this.showPlan = true
+        }
         this.ServiceName=data.ServiceName
       }
     })
   }
-  signOut(): void {
+  signOut() {
     window.sessionStorage.clear();
     this['router'].navigate(['home'])
   }

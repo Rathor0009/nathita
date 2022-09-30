@@ -29,5 +29,9 @@ userPayment(status:Number,usertype:string,response:{}): Observable<any> {
 }
 
 
+PaymentRecord():Observable<any>{
+  return this.http.get(AUTH_API+'get-user-payment-record',httpOptions)
+ }
+
 
 }

@@ -4,9 +4,10 @@
       <ion-back-button defaultHref="/home" (click)="signOut()"></ion-back-button>
     </ion-buttons>
     <ion-row>
-    <ion-col align-self-center>
-      <ion-img src="assets/img/s-works-logo (copy).png"></ion-img>
-      </ion-col></ion-row>
+      <ion-col align-self-center>
+        <ion-img src="assets/img/s-works-logo (copy).png"></ion-img>
+      </ion-col>
+    </ion-row>
   </ion-toolbar>
 </ion-header>
 <!-- List of Text Items -->
@@ -15,11 +16,50 @@
 
 
   <img src="assets/img/partial-view-repairman.jpg" class="center">
-<h3 class="ion-text-center">{{user.firstname}}{{user.lastname}} <ion-badge color="primary">swork</ion-badge></h3>
+  <h3 class="ion-text-center">{{user.firstname}}{{user.lastname}} <ion-badge color="primary">swork</ion-badge>
+  </h3>
   <h5 class="ion-text-center">{{user.phone}}</h5>
+
+
+
+  <ion-grid *ngIf="showPayment">
+    <ion-row>
+      <ion-col>
+        <ion-card id="card1" class="ion-text-center">
+          <ion-icon name="flame"></ion-icon>
+          <ion-card-header>
+            <ion-card-title>Activate Base-Plan  #300 Rs</ion-card-title>
+          </ion-card-header>
+          <ion-button fill="outline" color="light" mode="md" href="/payment">Click Here to Pay</ion-button>
+
+
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+
+  <ion-grid *ngIf="showPlan">
+    <ion-row>
+      <ion-col>
+        <ion-card id="card1" class="ion-text-center">
+          <ion-icon name="flame"></ion-icon>
+          <ion-card-header>
+            <ion-card-title>Plan Activated Valid Till </ion-card-title>
+            <!-- <ion-card-title>StartDate={{startDate}} </ion-card-title> -->
+            <ion-card-title>{{endDate}}/{{endMonth}}/{{endYear}} </ion-card-title>
+
+          </ion-card-header>
+
+
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
   <ion-item>
     <ion-label slot="start">User Name</ion-label>
-    <p slot="end" >{{user.firstname}}-{{user.lastname}}</p>
+    <p slot="end">{{user.firstname}}-{{user.lastname}}</p>
 
   </ion-item>
 
@@ -45,12 +85,24 @@
   </ion-item>
 
 
+  <ion-row>
 
+    <ion-col>
+
+
+      <ion-card-content id="card1" class="ion-text-center">
+
+        <ion-button fill="outline" color="light" mode="md" (click)="signOut()">LogOut</ion-button>
+      </ion-card-content>
+
+    </ion-col>
+  </ion-row>
 
 </ion-content>
 
 
-<section class="form__footer mt-0 mb-0">
+
+<!-- <section class="form__footer mt-0 mb-0">
   <div class="container">
     <div class="row">
       <div class="col-md-6 col-6 border__right">
@@ -60,11 +112,11 @@
       </div>
        <div class="col-md-6 col-6">
         <div class="left__btn">
-          <a href="/payment"  *ngif user.status="1"><i class="fas fa-info-circle"></i> Make-Payment</a>
-          <a href="/payment"  *ngif user.status="2"><i class="fas fa-info-circle"></i> view-plan</a>
+          <a href="/payment"  *ngIf="showPayment"><i class="fas fa-info-circle"></i> Make-Payment</a>
+          <a   *ngIf="showPlan"><i class="fas fa-info-circle"></i> view-plan</a>
 
         </div>
       </div>
     </div>
   </div>
-</section>
+</section> -->
