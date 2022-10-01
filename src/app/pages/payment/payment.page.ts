@@ -81,7 +81,7 @@ export class PaymentPage implements OnInit {
             this.paymentHistory.userPayment(this.status, this.usertype, this.paymentStatus).subscribe({
               next: data => {
                 console.log(data)
-                this['router'].navigate(['/shop-user-profile'])
+                this['router'].navigate(['shop-user-profile'])
               }
             })
               }

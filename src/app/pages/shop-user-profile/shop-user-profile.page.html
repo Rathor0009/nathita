@@ -1,15 +1,3 @@
-<!-- <ion-header>
-  <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-back-button defaultHref="/home" (click)="signOut()"></ion-back-button>
-    </ion-buttons>
-    <ion-col align-self-center>
-      <ion-img src="assets/img/s-works-logo (copy).png"></ion-img>
-      </ion-col>
-  </ion-toolbar>
-</ion-header> -->
-<!-- List of Text Items -->
-
 <ion-menu side="start" content-id="main-content">
   <ion-header>
     <ion-toolbar translucent>
@@ -20,20 +8,28 @@
     <ion-list>
       <ion-item>
         <ion-icon name="person-add-sharp" slot="start"></ion-icon>
-        <ion-label><a>My Account</a></ion-label>
+        <ion-label [routerLink]="['/product-details']"><a>Product</a></ion-label>
+    
+      </ion-item>  
+      <ion-item>
+        <ion-icon name="person-add-sharp" slot="start"></ion-icon>
+        <ion-label ><a (click)="presentAlert()" >Add-Product</a></ion-label>
+    
       </ion-item>
       <ion-item>
         <ion-icon name="key" slot="start"></ion-icon>
-        <ion-label>Product</ion-label>
+        <ion-label [routerLink]="['/shop-user-profile']">Profile</ion-label>
       </ion-item>
       <ion-item>
         <ion-icon name="key" slot="start"></ion-icon>
-        <ion-label>LogOut</ion-label>
+        <ion-label >LogOut</ion-label>
       </ion-item>
     </ion-list>
   </ion-content>
 </ion-menu>
-<ion-content>
+<!-- List of Text Items -->
+
+<ion-content fullscreen>
   <div class="ion-page" id="main-content">
     <ion-header>
       <ion-toolbar>
@@ -51,74 +47,86 @@
         </ion-title>
       </ion-toolbar>
     </ion-header>
-
- <ion-content>
-
-    <img src="assets/img/partial-view-repairman.jpg" class="center">
-    <h3 class="ion-text-center">{{user.firstname}}{{user.lastname}} <ion-badge color="primary">swork</ion-badge>
-    </h3>
-    <ion-grid *ngIf="showPlan">
-      <ion-row>
-        <ion-col>
-          <ion-card id="card1" class="ion-text-center">
-            <ion-icon name="flame"></ion-icon>
-            <ion-card-header>
-              <ion-card-title>Plan Activated Valid Till </ion-card-title>
-              <ion-card-title>{{endDate}}/{{endMonth}}/{{endYear}} </ion-card-title>
-
-            </ion-card-header>
-
-
-          </ion-card>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
-
-    <h5 class="ion-text-center">{{user.phone}}</h5>
-    <ion-item>
-      <ion-label slot="start">User Name</ion-label>
-      <p slot="end">{{user.firstname}}-{{user.lastname}}</p>
-
-    </ion-item>
-
-    <ion-item>
-      <ion-label slot="start">Phone Number</ion-label>
-      <p slot="end">{{user.phone}}</p>
-    </ion-item>
-
-    <ion-item>
-      <ion-label slot="start">Location</ion-label>
-      <p slot="end">{{user.geo_address}}</p>
-    </ion-item>
-    <ion-item>
-      <ion-label slot="start">Ref-Number</ion-label>
-      <p slot="end">{{user.rephone}}</p>
-    </ion-item>
-    <ion-item>
-      <ion-label slot="start">Email</ion-label>
-      <p slot="end">{{user.email}}</p>
-    </ion-item>
-
-  </ion-content>
+    
   </div>
+
+  <img src="assets/img/partial-view-repairman.jpg" class="center">
+<h3 class="ion-text-center">{{user.firstname}}{{user.lastname}} <ion-badge color="primary">swork</ion-badge></h3>
+  <h5 class="ion-text-center">{{user.phone}}</h5>
+  <ion-grid *ngIf="showPayment">
+    <ion-row>
+      <ion-col>
+        <ion-card id="card1" class="ion-text-center">
+          <ion-icon name="flame"></ion-icon>
+          <ion-card-header>
+            <ion-card-title>Activate Base-Plan  #300 Rs</ion-card-title>
+          </ion-card-header>
+          <ion-button fill="outline" color="light" mode="md" href="/payment">Click Here to Pay</ion-button>
+
+
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+
+  <ion-grid *ngIf="showPlan">
+    <ion-row>
+      <ion-col>
+        <ion-card id="card1" class="ion-text-center">
+          <ion-icon name="flame"></ion-icon>
+          <ion-card-header>
+            <ion-card-title>Plan Activated Valid Till </ion-card-title>
+            <!-- <ion-card-title>StartDate={{startDate}} </ion-card-title> -->
+            <ion-card-title>{{endDate}}/{{endMonth}}/{{endYear}} </ion-card-title>
+
+          </ion-card-header>
+
+
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-item>
+    <ion-label slot="start">User Name</ion-label>
+    <p slot="end">{{user.firstname}}-{{user.lastname}}</p>
+
+  </ion-item>
+
+  <ion-item>
+    <ion-label slot="start">Phone Number</ion-label>
+    <p slot="end">{{user.phone}}</p>
+  </ion-item>
+  <!-- <ion-item>
+    <ion-label slot="start">Your Service</ion-label>
+    <p slot="end">{{ServiceName}}</p>
+  </ion-item> -->
+  <ion-item>
+    <ion-label slot="start">Location</ion-label>
+    <p slot="end">{{user.geo_address}}</p>
+  </ion-item>
+  <ion-item>
+    <ion-label slot="start">Ref-Number</ion-label>
+    <p slot="end">{{user.rephone}}</p>
+  </ion-item>
+  <ion-item>
+    <ion-label slot="start">Email</ion-label>
+    <p slot="end">{{user.email}}</p>
+  </ion-item>
+
+
+  <ion-row>
+
+    <ion-col>
+
+
+      <ion-card-content id="card1" class="ion-text-center">
+
+        <ion-button fill="outline" color="light" mode="md" (click)="signOut()">LogOut</ion-button>
+      </ion-card-content>
+
+    </ion-col>
+  </ion-row>
 
 </ion-content>
-
-
-<!-- <section class="form__footer mt-0 mb-0">
-  <div class="container">
-    <div class="row">
-      <div class="col-md-6 col-6 border__right">
-        <div class="left__btn">
-          <a (click)="signOut()" href="/home"><i class="fas fa-home"></i>LogOut</a>
-        </div>
-      </div>
-      <div class="col-md-6 col-6">
-        <div class="left__btn">
-          <a href="/payment" *ngIf="showPayment"><i class="fas fa-info-circle"></i> Make-Payment</a>
-          <a *ngIf="showPlan"><i class="fas fa-info-circle"></i> view-plan</a>
-        </div>
-      </div>
-    </div>
-  </div>
-</section> -->

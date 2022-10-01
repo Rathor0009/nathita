@@ -135,7 +135,7 @@ async addPhotoToGallery() {
         console.log(data);
         this.isSuccessful = true;
         this.isSignUpFailed = false;
-        this['router'].navigate(['shop-user-login'])
+        this['router'].navigate(['shop-login'])
       },
       error: err => {
         this.errorMessage = err.error.message;

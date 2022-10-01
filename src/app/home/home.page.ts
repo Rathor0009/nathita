@@ -292,4 +292,6 @@ if(this.selected==1){
   searchClick() {
     this['router'].navigate(['map'])
   }
+
+  
 }

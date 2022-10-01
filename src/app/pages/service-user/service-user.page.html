@@ -11,33 +11,7 @@
   </ion-toolbar>
 </ion-header>
 
-  <!-- <section class="banner__wraper mb-4">
-  <div class="banner__overlay"></div>
-  <div class="container">
-    <div class="row">
-      <div class="col-md-12 col-sm-12 col-12">
-        <div class="banner__content">
-         <div class="form-group has-search">
-            <form name="form" (ngSubmit)="onSubmit()" #f="ngForm"  novalidate>
-              <span class="fas fa-search form-control-feedback" style="color: #282828;"></span>
-              <ion-select interface="action-sheet" style="color: #282828;" placeholder="serch for service"
-                 required name="service" [(ngModel)]="form.service"
-                #service="ngModel">
-                <ion-select-option *ngFor="let item of serviceData;let i=index" value="{{item._id}}">
-                  {{item.name}}</ion-select-option>
-              </ion-select>
-              <ion-row>
-                <ion-col>
-                  <ion-button type="submit">Search</ion-button>
-                </ion-col>
-              </ion-row>
-            </form>
-          </div> 
-        </div>
-      </div>
-    </div>
-  </div>
-</section> -->
+
 <ion-content role="feed">
   <ion-searchbar placeholder="Search location"  name="" [(ngModel)]="form.geo_address" #location="ngModel" #autocomplete> </ion-searchbar>
 

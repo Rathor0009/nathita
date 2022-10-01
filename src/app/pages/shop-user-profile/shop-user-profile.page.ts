@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AlertController, ToastController } from '@ionic/angular';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { PaymentService } from 'src/app/services/payment/payment.service';
+import { ShopProductService } from 'src/app/services/shop-product/shop-product.service';
 
 @Component({
   selector: 'app-user-profile',
@@ -17,7 +19,8 @@ export class ShopUserProfilePage implements OnInit {
   endMonth: number;
   endYear: number;
   endDate: number;
-  constructor(private auth: AuthService, private router: Router, private payment: PaymentService) { }
+  message: any;
+  constructor(private toastController: ToastController,private shopProduct:ShopProductService,private auth: AuthService, private router: Router, private payment: PaymentService,private alertController: AlertController) { }
 
   ngOnInit() {
     this.auth.getShopuser().subscribe({
@@ -39,7 +42,9 @@ export class ShopUserProfilePage implements OnInit {
       this.payment.PaymentRecord().subscribe({
         next: data => {
           // console.log(data);
-          let startdate = new Date(data.getPayUser.createdAt);
+          console.log(data);
+          
+          let startdate = new Date(data.createdAt);
           this.startDate = startdate
           let endMonth = new Date(data.message).getMonth()
           this.endMonth = endMonth
@@ -58,6 +63,66 @@ export class ShopUserProfilePage implements OnInit {
   signOut() {
     window.sessionStorage.clear();
     this['router'].navigate(['home'])
+  }
+
+  async presentAlert() {
+    const alert = await this.alertController.create({
+      header: 'Please enter Product info',
+      buttons: [{
+        text: 'ADD',
+        handler: (alertData) => { //takes the data 
+          
+          console.log(alertData.quantity);
+          
+          this.shopProduct.createShopProduct(alertData.name, alertData.price, alertData.quantity,alertData.description).subscribe({
+            next: data => {
+              console.log(data)
+              this.message=data.message
+              
+              this.presentToast('top')
+            }
+          })
+        }
+      }],
+      inputs: [
+        {
+          name: 'name',
+          placeholder: 'Product-Name',
+        },
+       
+        {
+          name: ' price',
+          type: 'number',
+          placeholder: 'Price',
+         
+        },
+        {
+          name: 'quantity',
+          type: 'number',
+          placeholder: 'Quantity',
+          
+        },
+        {
+          name: 'description',
+          type: 'number',
+          placeholder: 'description',
+          
+        }
+       
+      ],
+    });
+
+    await alert.present();
+  }
+
+  async presentToast(position: 'top') {
+    const toast = await this.toastController.create({
+      message: this.message,
+      duration: 1500,
+      position: position
+    });
+
+    await toast.present();
   }
 
 }

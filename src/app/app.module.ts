@@ -9,7 +9,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TokenInterceptorService } from './services/token-interceptor/token-interceptor.service';
 import { SplashScreen } from '@capacitor/splash-screen';
-
 @NgModule({
   declarations: [AppComponent,],
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, HttpClientModule,],
