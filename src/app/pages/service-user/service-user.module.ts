@@ -8,12 +8,14 @@ import { ServiceUserPageRoutingModule } from './service-user-routing.module';
 
 import { ServiceUserPage } from './service-user.page';
 
+
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    ServiceUserPageRoutingModule
+    ServiceUserPageRoutingModule,
+    
   ],
   declarations: [ServiceUserPage]
 })

@@ -1,0 +1,45 @@
+
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home"></ion-back-button>
+      <ion-col align-self-center>
+        <ion-img src="assets/img/s-works-logo (copy).png"></ion-img>
+      </ion-col>
+    </ion-buttons>
+
+    <ion-title></ion-title>
+  </ion-toolbar>
+</ion-header>
+
+  <ion-content>
+    <ion-list  *ngFor="let item of productData;let i = index;" >
+  
+      <ion-item>
+        <ion-avatar slot="start">
+          <img src="https://ionicframework.com/docs/demos/api/avatar/avatar.svg" />
+        </ion-avatar>
+  
+        <ion-label>
+           <h2>Status: {{item.status}}</h2>
+          <h2>Item:   {{item.name}}</h2>
+          <h3>Price:  {{item.price}}</h3>
+           <h2>{{item.service}}</h2> 
+          <h2>Description:  {{item.description}}</h2> 
+  
+        </ion-label>
+       
+        <!-- <ion-avatar slot="end">
+          <ion-button (click)="presentAlert(item._id)">
+            <ion-img src="assets/img/phone-call.png"></ion-img>
+          </ion-button>
+  
+        </ion-avatar> -->
+        
+      </ion-item>
+  
+     
+  
+    </ion-list>
+  </ion-content>
+  

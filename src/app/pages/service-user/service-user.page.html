@@ -40,6 +40,8 @@
         <!-- <h2>{{item.service}}</h2> -->
         <h2>{{item.geo_address}}</h2>
         <p>{{item.email}}</p>
+    
+        <ion-button *ngIf="selected==2" class="success"  (click)="launchPage(item._id,item.shop)"><h2>Product-Details</h2></ion-button>
       </ion-label>
 
       <ion-avatar slot="end">

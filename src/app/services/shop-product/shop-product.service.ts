@@ -41,14 +41,23 @@ export class ShopProductService {
   }
 
   deleteShopProduct(p_id:string):Observable<any>{
-    return this.http.patch(AUTH_API+'delete-shopProduct',{
+    return this.http.post(AUTH_API+'delete-shopProduct',{
     p_id
     },httpOptions)
   }
 
-  updateShopProductStatus(status: number): Observable<any> {
+  updateShopProductStatus(status: number,p_id:any): Observable<any> {
     return this.http.patch(AUTH_API + 'update-shop-product-status', {
-      status
+      status,
+      p_id
     }, httpOptions)
+  }
+
+  // get poduct by user id
+
+  getShopProductById(shopUser_id:any,shop_id:any):Observable<any>{
+    return this.http.post(AUTH_API+'get-shopProductById',{
+      shopUser_id,shop_id
+    })
   }
 }

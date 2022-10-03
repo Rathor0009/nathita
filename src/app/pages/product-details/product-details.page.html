@@ -28,6 +28,7 @@
       </ion-avatar>
 
       <ion-label>
+        <h2>Status: {{item.status}}</h2>
         <h2>Item:   {{item.name}}</h2>
         <h3>Price:  {{item.price}}</h3>
         <!-- <h2>{{item.service}}</h2> -->
@@ -36,7 +37,7 @@
 
       </ion-label>
       <ion-avatar slot="end" >
-        <ion-badge  (click)="deleteAlert()" >Delete</ion-badge>
+        <ion-badge  (click)="deleteAlert(item._id)" >Delete</ion-badge>
       </ion-avatar>
       <!-- <ion-avatar slot="end">
         <ion-button (click)="presentAlert(item._id)">
@@ -49,7 +50,7 @@
 
     <ion-item>
       <ion-label>Change Item Status</ion-label>
-      <ion-toggle [(ngModel)]="item.status"  (click)="statusUpdate($event,i)"></ion-toggle>
+      <ion-toggle [checked]="item.status" (click)="statusUpdate($event,item._id,i)"></ion-toggle>
     </ion-item>
 
   </ion-list>

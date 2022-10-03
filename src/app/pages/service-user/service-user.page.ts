@@ -1,10 +1,11 @@
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { AlertController, IonSearchbar } from '@ionic/angular';
+import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
+import { AlertController, IonSearchbar, NavController } from '@ionic/angular';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { ConsumerService } from 'src/app/services/consumer/consumer.service';
 import { ServiceService } from 'src/app/services/service/service.service';
 import { ShopService } from 'src/app/services/shop/shop.service';
+import { ShopProductDetailsPage } from '../shop-product-details/shop-product-details.page';
 declare var google
 
 @Component({
@@ -33,7 +34,7 @@ export class ServiceUserPage implements OnInit {
   lng: any;
   
 
-  constructor(private shop: ShopService, private service: ServiceService, private consumer: ConsumerService, private auth: AuthService, private alertController: AlertController, private route: ActivatedRoute, private router: Router) { }
+  constructor(public navCtrl:NavController,private shop: ShopService, private service: ServiceService, private consumer: ConsumerService, private auth: AuthService, private alertController: AlertController, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
     console.log("###################", this.latlng);
@@ -84,6 +85,7 @@ export class ServiceUserPage implements OnInit {
         }
 
       })
+
       this.shop.shops().subscribe({
         next: (data) => {
           this.serviceData = data.data
@@ -93,6 +95,9 @@ export class ServiceUserPage implements OnInit {
           this.form.service = this.selectedService;
         }
       })
+
+
+
     }
 
   }
@@ -218,8 +223,21 @@ export class ServiceUserPage implements OnInit {
       });
     }
 
-    // this.onSubmit()
+    
 
+  }
+  launchPage(shopUser_id:any,shop_id:any,){
+    console.log(shopUser_id);
+    console.log(shop_id);
+    
+
+    
+    if(this.selected==2){
+    const params: NavigationExtras = {
+      queryParams: { shopUser_id:shopUser_id,shop_id:shop_id}
+    }
+    this.router.navigate(['shop-product-details'], params)
+  }
   }
 
 }
