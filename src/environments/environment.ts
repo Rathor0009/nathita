@@ -3,9 +3,10 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  baseUrl:'http://localhost:4002/',
+  // baseUrl:'http://localhost:4002/',
   mapsKey: 'AIzaSyDZTHOsczaysujHMvlv5CyJadiIy5lxXyY',
-  production: false
+  production: false,
+  baseUrl:'https://api.smartworkindia7.com/',
 };
 
 /*
