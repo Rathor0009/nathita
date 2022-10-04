@@ -1,11 +1,11 @@
 <ion-menu side="start" content-id="main-content">
   <ion-header>
-    <ion-toolbar translucent>
+    <ion-toolbar>
       <ion-title>Register/Login</ion-title>
     </ion-toolbar>
   </ion-header>
   <ion-content>
-    <ion-list>
+    <ion-list class="list">
       <ion-item>
         <ion-icon name="person-add-sharp" slot="start"></ion-icon>
         <ion-label [routerLink]="['/register']"><a>Signup</a></ion-label>
@@ -59,7 +59,7 @@
       <ion-content role="feed">
         <ion-searchbar debounce="500" [(ngModel)]="search" (ionChange)="searchService()"></ion-searchbar>
 
-        <ion-list *ngFor="let item of serviceData;let i=index">
+        <ion-list class="list" *ngFor="let item of serviceData;let i=index">
 
 
           <ion-item (click)="onClick(item._id)">

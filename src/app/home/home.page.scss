@@ -42,3 +42,11 @@ background-color:red;
 border-radius: 1px;
 
 }
+
+.list{
+  cursor: pointer;
+}
+
+ion-item.item:hover ion-label {
+  background-color: lightgray
+}
