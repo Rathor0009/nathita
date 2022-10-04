@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { AuthGuard } from './gaurds/auth.gaurd';
 
 const routes: Routes = [
   {
@@ -26,6 +27,7 @@ const routes: Routes = [
   },
   {
     path: 'user-profile',
+    canLoad:[AuthGuard],
     loadChildren: () => import('./pages/user-profile/user-profile.module').then( m => m.UserProfilePageModule)
   },
   {
@@ -47,14 +49,23 @@ const routes: Routes = [
   },
   {
     path: 'shop-user-profile',
+    canLoad:[AuthGuard],
+
+
     loadChildren: () => import('./pages/shop-user-profile/shop-user-profile.module').then( m => m.ShopUserProfilePageModule)
   },
   {
     path: 'payment',
+    canLoad:[AuthGuard],
+
+
     loadChildren: () => import('./pages/payment/payment.module').then( m => m.PaymentPageModule)
   },
   {
     path: 'product-details',
+    canLoad:[AuthGuard],
+
+
     loadChildren: () => import('./pages/product-details/product-details.module').then( m => m.ProductDetailsPageModule)
   },
   {

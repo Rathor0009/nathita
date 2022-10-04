@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
 import { NavController } from '@ionic/angular';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { AuthService } from '../services/auth/auth.service';
 
 @Injectable({
@@ -30,5 +30,8 @@ export class AuthGuard implements CanActivate {
       }
     }
     return true;
+  }
+  canLoad():Observable<boolean>{
+    return of(false)
   }
 }
