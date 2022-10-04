@@ -1,7 +1,7 @@
 img{
-    border-radius: 50%;
-    margin-top: 10px;
-    width: 144px;
+    // border-radius: 50%;
+    margin-top: 120px;
+    width: 170px;
 }
 .center{
     display: block;
@@ -11,5 +11,26 @@ img{
 }
 #card1{
     background: linear-gradient(to left top,#d71923,#ec27fe);
+}
+#flame{
+    margin-top: 10px;
+}
+.p{
+    text-align: end;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+.label{
+    font-weight: bold;
+}
+ion-item.item:hover .ion-label {
+    background-color: lightgray
+  }
+ion-item ion-label a {
+   cursor: pointer;
+  }
 
+  .card-title{
+  font-weight: bolder;
+    font-size: x-large;
 }

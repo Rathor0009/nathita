@@ -47,21 +47,21 @@ const routes: Routes = [
   },
   {
     path: 'shop-user-profile',
-    canLoad:[AuthGuard],
+    // canLoad:[AuthGuard],
 
 
     loadChildren: () => import('./pages/shop-user-profile/shop-user-profile.module').then( m => m.ShopUserProfilePageModule)
   },
   {
     path: 'payment',
-    canLoad:[AuthGuard],
+    // canLoad:[AuthGuard],
 
 
     loadChildren: () => import('./pages/payment/payment.module').then( m => m.PaymentPageModule)
   },
   {
     path: 'product-details',
-    canLoad:[AuthGuard],
+    // canLoad:[AuthGuard],
 
 
     loadChildren: () => import('./pages/product-details/product-details.module').then( m => m.ProductDetailsPageModule)
