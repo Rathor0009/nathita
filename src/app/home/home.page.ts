@@ -23,10 +23,10 @@ export class HomePage implements OnInit {
   @ViewChild('map')
   mapRef: ElementRef<HTMLElement>;
 
-  @Input() 
+  @Input()
 
   newMap: GoogleMap;
- 
+
   markerId: string;
 
   form: any = {
@@ -34,7 +34,7 @@ export class HomePage implements OnInit {
     location: ''
 
   }
-  latlng:any
+  latlng: any
   search: string;
   errorMessage: any;
   serviceData: any;
@@ -46,8 +46,9 @@ export class HomePage implements OnInit {
   canter: any = {
     lat: 30.6998327,
     lng: 76.7295102,
-  }
-  constructor(private toastController: ToastController,private alertController: AlertController, private auth: AuthService, private router: Router, private service: ServiceService, private shop: ShopService) { }
+  };
+  constructor(private alertController: AlertController, private auth: AuthService, private router: Router,
+     private service: ServiceService, private shop: ShopService) { }
 
 
   async ngOnInit() {
@@ -63,11 +64,10 @@ export class HomePage implements OnInit {
         console.log(this.serviceData)
 
       }
-    })
+    });
   }
   ngAfterViewInit() {
-    this.createMap()
-
+    this.createMap();
   }
   ionViewDidEnter() {
     // Auto completed place api
@@ -78,8 +78,8 @@ export class HomePage implements OnInit {
         console.log(autocomplete.getPlace());
         let response = autocomplete.getPlace();
         this.form.location = response.formatted_address;
-        this.latlng = [response.geometry['location'].lat(),response.geometry['location'].lng()];
-        
+        this.latlng = [response.geometry['location'].lat(), response.geometry['location'].lng()];
+
       })
     }))
   }
@@ -144,9 +144,9 @@ export class HomePage implements OnInit {
       // this.current=[event.latitude, event.longitude]
       this.latlng = [event.latitude, event.longitude];
       this.form.location = this.latlng
-      console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!",this.latlng);
- console.log(this.form.location);
- 
+      console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!", this.latlng);
+      console.log(this.form.location);
+
 
 
 
@@ -171,7 +171,7 @@ export class HomePage implements OnInit {
   onSubmit(): void {
 
     const { service } = this.form;
-    this.auth.getservice(service,this.latlng[0],this.latlng[1]).subscribe({
+    this.auth.getservice(service, this.latlng[0], this.latlng[1]).subscribe({
       next: data => {
         console.log(data)
         console.log(data.service)
@@ -225,20 +225,20 @@ export class HomePage implements OnInit {
 
     await alert.present();
   }
- async onClick(id: any) {
+  async onClick(id: any) {
     console.log(id);
-    if(this.latlng===this.empty){
+    if (this.latlng === this.empty) {
       console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-      
-    return await this.presentAlert()
+
+      return await this.presentAlert()
     }
 
     if (this.selected === 1) {
-      this.auth.getservice(id,this.latlng[0],this.latlng[1]).subscribe({
+      this.auth.getservice(id, this.latlng[0], this.latlng[1]).subscribe({
         next: data => {
-         
+
           const params: NavigationExtras = {
-            queryParams: { serviceValue: id, selected: this.selected,lat:this.latlng[0],lng:this.latlng[1]}
+            queryParams: { serviceValue: id, selected: this.selected, lat: this.latlng[0], lng: this.latlng[1] }
           }
 
           this.router.navigate(['service-user'], params)
@@ -251,11 +251,11 @@ export class HomePage implements OnInit {
       });
     }
     if (this.selected === 2) {
-      this.auth.getshop(id,this.latlng[0],this.latlng[1]).subscribe({
+      this.auth.getshop(id, this.latlng[0], this.latlng[1]).subscribe({
         next: data => {
-         
+
           const params: NavigationExtras = {
-            queryParams: { serviceValue: id, selected: this.selected,lat:this.latlng[0],lng:this.latlng[1]}
+            queryParams: { serviceValue: id, selected: this.selected, lat: this.latlng[0], lng: this.latlng[1] }
           }
 
           this.router.navigate(['service-user'], params)
@@ -269,29 +269,29 @@ export class HomePage implements OnInit {
     }
   }
   searchService() {
-if(this.selected==1){
-    this.service.services(this.search).subscribe({
-      next: data => {
-        this.serviceData = data.data
-        console.log(this.serviceData)
+    if (this.selected == 1) {
+      this.service.services(this.search).subscribe({
+        next: data => {
+          this.serviceData = data.data
+          console.log(this.serviceData)
 
-      }
-    })
+        }
+      })
+    }
+    if (this.selected == 2) {
+      this.shop.shops(this.search).subscribe({
+        next: data => {
+          this.serviceData = data.data
+          console.log(this.serviceData)
+
+        }
+      })
+    }
+
   }
-  if(this.selected==2){
-    this.shop.shops(this.search).subscribe({
-      next: data => {
-        this.serviceData = data.data
-        console.log(this.serviceData)
-
-      }
-    })
-  }
-
-}
   searchClick() {
     this['router'].navigate(['map'])
   }
 
-  
+
 }

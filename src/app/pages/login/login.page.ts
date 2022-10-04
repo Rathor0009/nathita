@@ -18,7 +18,7 @@ export class LoginPage implements OnInit {
   // isLoading=false
   // isLoginFailed = false;
   // errorMessage = '';
-  loginForm:FormGroup
+  loginForm:FormGroup;
   isLoggedIn = false;
   errorMessage: any;
  

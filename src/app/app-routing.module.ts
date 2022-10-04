@@ -6,7 +6,6 @@ const routes: Routes = [
     path: 'home',
     loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
   },
-  
   {
     path: '',
     redirectTo: 'home',
@@ -32,7 +31,6 @@ const routes: Routes = [
     path: 'service-user',
     loadChildren: () => import('./pages/service-user/service-user.module').then( m => m.ServiceUserPageModule)
   },
-  
   {
     path: 'modal',
     loadChildren: () => import('./modal/modal.module').then( m => m.ModalPageModule)
@@ -61,7 +59,6 @@ const routes: Routes = [
     path: 'shop-product-details',
     loadChildren: () => import('./pages/shop-product-details/shop-product-details.module').then( m => m.ShopProductDetailsPageModule)
   },
-  
 ];
 
 @NgModule({

@@ -1,5 +1,6 @@
 import { getLocaleFirstDayOfWeek } from '@angular/common';
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Photo } from '@capacitor/camera';
 import { IonSearchbar } from '@ionic/angular';
@@ -14,14 +15,9 @@ declare  var google
   styleUrls: ['./register.page.scss'],
 })
 export class RegisterPage implements OnInit {
-  @ViewChild('autocomplete') autocomplete:IonSearchbar;
-
-  location:[]
-
-
-
-
-
+  @ViewChild('autocomplete') autocomplete: IonSearchbar;
+  registerForm!: FormGroup;
+  location: [];
   form: any = {
     phone: null,
     firstname: null,
@@ -31,17 +27,17 @@ export class RegisterPage implements OnInit {
     password: null,
     location: null,
     service: null,
-    geo_address:null
-
+    geo_address: null
   };
   isSuccessful = false;
   isSignUpFailed = false;
   errorMessage = '';
   serviceData: any;
   photos: any;
-  data:any
+  data: any;
   categoryVal: any;
-  constructor(private authService: AuthService, private router: Router, private service: ServiceService, public photoService: PhotoService,private shop:ShopService) { }
+  constructor(private authService: AuthService, private router: Router, private service: ServiceService,
+    public photoService: PhotoService,private shop: ShopService,private fb: FormBuilder) { }
 
  async ngOnInit() {
     await this.photoService.loadSaved();
@@ -51,6 +47,21 @@ export class RegisterPage implements OnInit {
     //     console.log(this.serviceData)
     //   }
     // })
+    this.createForm();
+  }
+
+  createForm(){
+    this.registerForm = this.fb.group({
+      phone: ['',[]],
+    firstname: ['',[]],
+    lastname: ['',[]],
+    email: ['',[]],
+    rephone: ['',[]],
+    password: ['',[]],
+    location: ['',[]],
+    service: ['',[]],
+    geo_address: ['',[]]
+    });
   }
 // for take picture@@@@@@@@@@@@@@@@@@@@@
 async addPhotoToGallery() {
