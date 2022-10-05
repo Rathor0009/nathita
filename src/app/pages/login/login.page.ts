@@ -57,7 +57,7 @@ export class LoginPage implements OnInit {
 
         this.isLoggedIn = true;
 
-        this['router'].navigate(['user-profile'])
+        this.router.navigate(['/user-profile'])
         // this.reloadPage();
       },error: err => {
         this.errorMessage = err.error.message;

@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { ToastController } from '@ionic/angular';
 import { PaymentService } from 'src/app/services/payment/payment.service';
 
@@ -19,7 +20,7 @@ export class PaymentPage implements OnInit {
   status: 2;
   usertype: string="shop"
 
-  constructor(private toastCtrl: ToastController, private http: HttpClient, private paymentHistory: PaymentService) { }
+  constructor(private toastCtrl: ToastController, private http: HttpClient, private paymentHistory: PaymentService,private router: Router) { }
 
   ngOnInit() {
   }
@@ -81,7 +82,7 @@ export class PaymentPage implements OnInit {
             this.paymentHistory.userPayment(this.status, this.usertype, this.paymentStatus).subscribe({
               next: data => {
                 console.log(data)
-                this['router'].navigate(['shop-user-profile'])
+                this.router.navigate(['shop-user-profile']);
               }
             })
               }

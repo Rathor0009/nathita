@@ -42,9 +42,11 @@
 
             <ion-col align-self-center>
               <ion-img src="assets/img/s-works-logo (copy).png" class="log"></ion-img>
+             
             </ion-col>
           </ion-row>
         </ion-title>
+        <ion-icon name="log-out" (click)="signOut()" slot="end"></ion-icon>
       </ion-toolbar>
     </ion-header>
     
@@ -61,7 +63,7 @@
           <ion-card-header>
             <ion-card-title class="card-title">Activate Base-Plan<br>#300 Rs</ion-card-title>
           </ion-card-header>
-          <ion-button fill="outline" color="light" mode="md" href="/payment">Click Here to Pay</ion-button>
+          <ion-button class="payment" fill="outline" color="light" mode="md" href="/payment">Click Here to Pay</ion-button>
 
 
         </ion-card>
@@ -115,7 +117,7 @@
     <p class="p" slot="end">{{user.email}}</p>
   </ion-item>
 
-
+<!-- 
   <ion-row>
 
     <ion-col>
@@ -127,6 +129,6 @@
       </ion-card-content>
 
     </ion-col>
-  </ion-row>
+  </ion-row> -->
 
 </ion-content>

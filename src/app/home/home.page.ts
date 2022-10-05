@@ -290,7 +290,7 @@ export class HomePage implements OnInit {
 
   }
   searchClick() {
-    this['router'].navigate(['map'])
+    this.router.navigate(['/map'])
   }
 
 

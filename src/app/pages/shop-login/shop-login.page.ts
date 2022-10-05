@@ -57,7 +57,7 @@ export class ShopLoginPage implements OnInit {
 
         this.isLoggedIn = true;
 
-        this['router'].navigate(['/shop-user-profile'])
+        this.router.navigate(['/shop-user-profile'])
         // this.reloadPage();
       },error: err => {
         this.presentAlert()

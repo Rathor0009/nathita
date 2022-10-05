@@ -72,7 +72,7 @@ export class UserProfilePage implements OnInit {
 
   signOut() {
     window.sessionStorage.clear();
-    this['router'].navigate(['home'])
+    this.router.navigate(['/home'])
   }
 
 }
