@@ -7,7 +7,7 @@
   <ion-content>
     <ion-list>
       <ion-item>
-        <ion-icon id="label" name="person-add-sharp" slot="start"></ion-icon>
+        <ion-icon id="label" name="person-sharp" slot="start"></ion-icon>
         <ion-label class="ion-label" [routerLink]="['/product-details']"><a>Product</a></ion-label>
     
       </ion-item>  
@@ -20,10 +20,10 @@
         <ion-icon id="label" name="key" slot="start"></ion-icon>
         <ion-label class="ion-label" [routerLink]="['/shop-user-profile']"><a>Profile</a></ion-label>
       </ion-item>
-      <ion-item>
+      <!-- <ion-item>
         <ion-icon id="label" name="key" slot="start"></ion-icon>
         <ion-label class="ion-label"><a>LogOut</a></ion-label>
-      </ion-item>
+      </ion-item> -->
     </ion-list>
   </ion-content>
 </ion-menu>
@@ -36,6 +36,9 @@
         <ion-buttons slot="start">
           <ion-menu-button></ion-menu-button>
         </ion-buttons>
+        <ion-buttons slot="end">
+          <ion-icon name="log-out" (click)="signOut()" slot="end"></ion-icon>
+        </ion-buttons>
         <ion-title>
 
           <ion-row>
@@ -46,7 +49,6 @@
             </ion-col>
           </ion-row>
         </ion-title>
-        <ion-icon name="log-out" (click)="signOut()" slot="end"></ion-icon>
       </ion-toolbar>
     </ion-header>
     

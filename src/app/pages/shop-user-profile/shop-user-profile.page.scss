@@ -12,14 +12,16 @@ img{
 .log{
     display: grid;
     width: 70%;
-    margin-left: 10px;
+    margin-left: 20px;
   }
 #card1{
     background: white;
+    border-radius: 20px;
+    border-style: solid;
 }
 #flame{
     margin-top: 10px;
-    color: #3880FF;
+    color: orange;
 }
 .payment{
     background-color: #3880FF;
@@ -40,6 +42,7 @@ ion-item ion-label a {
   }
 
   .card-title{
-  font-weight: bolder;
+    font-weight: bolder;
     font-size: x-large;
+    font-variant-caps: small-caps;
 }

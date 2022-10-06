@@ -6,3 +6,16 @@ ion-item.item:hover ion-badge {
     width: 70%;
     margin-left: 10px;
   }
+  .fab{
+    display: flex;
+    justify-content: center;
+    border-bottom: inset;
+  }
+  .toggle{
+    border-right-style: ridge;
+  }
+  .image{
+    border-radius: inherit;
+    width: 100px;
+    margin-right: 10px;
+  }
